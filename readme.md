@@ -33,9 +33,11 @@
 | 变量名 | 数据类型 | 描述 |
 | ------ | --------- | ----- |
 | status | int | 若登录成功，返回1；否则返回0|
+
 **登录成功后服务器会通过session保存登录状态**
 
 # 获取用户信息
+
 **在登录之后，**通过这个页面获得用户的基本信息。    
 url: scut18pie1.top/test/gift/user/get_user_info.php    
 返回数据格式: JSON
@@ -45,7 +47,7 @@ url: scut18pie1.top/test/gift/user/get_user_info.php
 | status | int | 若没有登录，返回0，并且没有info一项；否则返回1 |
 | info | array | 用户个人信息 |
 
-array格式:
+info格式:
 
 | 键 | 值 |
 | --- | --- |
@@ -54,9 +56,24 @@ array格式:
 | nickname | string |
 | sex | int |
 | adress | string |
-| headPic | string |
+| headPic | string/null |
 | phone | string |
-| selfIntro | string |
+| selfIntro | string/null |
+
+
+# 检查id是否重复
+请求: POST, url: scut18pie1.top/test/gift/user/check_id_existence.php    
+请求数据格式: JSON
+
+| 变量名 | 数据类型 | 描述 |
+| ------ | --------- | ----- |
+| id | string | 用户id，记得先检查合不合法 |
+
+返回数据格式: TEXT
+
+| 变量名 | 数据类型 | 描述 |
+| ------ | --------- | ----- |
+| status | int | 若id已经存在，返回1；否则返回0 |
 
 
 # 获取失物招领信息（卫星）
