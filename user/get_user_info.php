@@ -4,9 +4,14 @@
     $status = $user->status;
     if ($status == 1) {
         $info = array();
-        $info['uid']      = $user->uid;
-        $info['id']       = $user->id;
-        $info['nickname'] = $user->nickname;
+        $info['uid']       = $user->uid;
+        $info['id']        = $user->id;
+        $info['nickname']  = $user->nickname;
+        $info['sex']       = $user->sex;
+        $info['headPic']   = $user->headPic;
+        $info['adress']    = $user->adress;
+        $info['phone']     = $user->phone;
+        $info['selfIntro'] = $user->selfIntro;
         $res = array();
         $res['status'] = $status;
         $res['info']   = $info;

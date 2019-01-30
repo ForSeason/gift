@@ -1,9 +1,12 @@
 ﻿create table user(
 uid int auto_increment key,
 id varchar(20) not null unique,
+password char(70) not null,
 nickname text not null,
+sex int not null,
 headPic text,
 phone text,
+adress text,
 selfIntro longtext
 );
 
@@ -12,5 +15,6 @@ lid int auto_increment key,
 id varchar(20) not null,
 title varchar(200) not null unique,
 content longtext,
-pic text
+pic text,
+creatTime text
 );
