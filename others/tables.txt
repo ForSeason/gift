@@ -1,0 +1,16 @@
+﻿create table user(
+uid int auto_increment key,
+id varchar(20) not null unique,
+nickname text not null,
+headPic text,
+phone text,
+selfIntro longtext
+);
+
+create table losts(
+lid int auto_increment key,
+id varchar(20) not null,
+title varchar(200) not null unique,
+content longtext,
+pic text
+);
