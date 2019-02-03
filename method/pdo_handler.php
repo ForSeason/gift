@@ -20,6 +20,11 @@
             $stmt->execute($values);
             return $stmt->rowCount();
         }
+
+
+        public function lastInsertId($param){
+            return $this->pdolink->lastInsertId($param);
+        }
         
 
 
@@ -97,18 +102,41 @@
         }
 
 
-        public function select_sp($table, $params, $limit){
+        public function select_like($table, $params1, $params2, $values2){
             $sql_tpl = 'SELECT %s FROM %s WHERE %s;';
+            if ($params1 == null) {
+                $str_params1 = '*';
+            } else {
+                $str_params1 = implode(',', $params1);
+            }
+            if ($params2 == null or $values2 == null) {
+                $str_params2 = '1=?';
+                $values      = array('1');
+            } else {
+                $str_params2 = implode(" LIKE ? AND ", $params2);
+                $str_params2.= " LIKE ?";
+                $values      = array_merge($values2);
+            }
+            $sql     = sprintf($sql_tpl, $str_params1, $table, $str_params2);
+            $stmt    = $this->pdolink->prepare($sql);
+            $stmt->execute($values);
+            return $stmt;
+        }
+
+
+        public function select_sp($table, $params, $limit){
+            $sql_tpl = 'SELECT %s FROM %s %s;';
             if ($params == null) {
                 $str_params = '*';
             } else {
-                $str_params = implode(',', $params1);
+                $str_params = implode(',', $params);
             }
-            $sql     = sprintf($sql_tpl, $table, $str_params, $limit);
+            $sql     = sprintf($sql_tpl, $str_params, $table, $limit);
             $stmt    = $this->pdolink->prepare($sql);
             $stmt->execute();
             return $stmt;
         }
+
 
     }
 ?>

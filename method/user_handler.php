@@ -3,32 +3,31 @@
 
     class user_handler{
         
-        public $status    = null;   //login status
-        public $uid       = null;
-        public $id        = null;
-        public $nickname  = null;
-        public $headPic   = null;
-        public $adress    = null;
-        public $phone     = null;
-        public $selfIntro = null;
-        public $link      = null;
+        public $info   = array();
+        public $link   = null;
+        public $status = null;   //login status
 
         public function __construct(){
-            if (session_status() == 1) session_start();
-            if (isset($_SESSION['uid'])) {
-                $this->uid       = $_SESSION['uid'];
-                $this->id        = $_SESSION['id'];
-                $this->nickname  = $_SESSION['nickname'];
-                $this->sex       = $_SESSION['sex'];
-                $this->headPic   = $_SESSION['headPic'];
-                $this->adress    = $_SESSION['adress'];
-                $this->phone     = $_SESSION['phone'];
-                $this->selfIntro = $_SESSION['selfIntro'];
-                $this->status    = 1;
-            } else {
-                $this->status   = 0;
-            }
             $this->link = new pdo_handler();
+            if (session_status() == 1) session_start();
+            if (isset($_SESSION['id'])) {
+                $table  = 'user';
+                $params = array('id');
+                $values = array($_SESSION['id']);
+                $stmt   = $this->link->select($table, null, $params, $values);
+                $user   = $stmt->fetch(PDO::FETCH_ASSOC);
+                $this->info['uid']       = (int)$user['uid'];
+                $this->info['id']        = $user['id'];
+                $this->info['nickname']  = $user['nickname'];
+                $this->info['sex']       = (int)$user['sex'];
+                $this->info['headPic']   = $user['headPic'];
+                $this->info['adress']    = $user['adress'];
+                $this->info['phone']     = $user['phone'];
+                $this->info['selfIntro'] = $user['selfIntro'];
+                $this->status = 1;
+            } else {
+                $this->status = 0;
+            }
         }
 
         public function register($id, $nickname, $password, $sex, $adress, $phone){
@@ -48,19 +47,44 @@
                 session_destroy();
                 session_start();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['id']        = $user['id'];
-                $_SESSION['uid']       = (int)$user['uid'];
-                $_SESSION['nickname']  = $user['nickname'];
-                $_SESSION['sex']       = (int)$user['sex'];
-                $_SESSION['headPic']   = $user['headPic'];
-                $_SESSION['adress']    = $user['adress'];
-                $_SESSION['phone']     = $user['phone'];
-                $_SESSION['selfIntro'] = $user['selfIntro'];
+                $_SESSION['id']   = $user['id'];
                 $this->__construct();
             } else {
                 session_destroy();
             }
             return $status;
+        }
+
+        public function upload_headPic(){
+            if ($this->status == 1 and isset($_FILES['headPic'])) {
+                if ($_FILES['headPic']['error'] == 0 and ($_FILES['headPic']['type'] == 'image/jpeg' or $_FILES['headPic']['type'] == 'image/png')) {
+                    //var_dump(time());
+                    $file     = $_FILES['headPic']['tmp_name'];
+                    $filename = md5((string)time());
+                    $filename.= ($_FILES['headPic']['type'] == 'image/jpeg')?'.jpg':'.png';
+                    move_uploaded_file($file,'../headPic/'.$filename);
+                    $table    = 'user';
+                    $params1  = array('headPic');
+                    $values1  = array('scut18pie1.top/test/gift/headPic/'.$filename);
+                    $params2  = array('uid');
+                    $values2  = array($this->info['uid']);
+                    $status   = $this->link->update($table, $params1, $values1, $params2, $values2);
+                    $this->__construct();
+                    return $status;
+                } else {
+                    return 'invalid type';
+                }
+            }
+            return 'go away!';
+        }
+
+        public function update_my_info($params2, $values2){
+            if ($this->stauts == 1) {
+                $table = 'user';
+                $params1 = array('id');
+                $values1 = array($this->info['id']);
+                return $this->link->update($table, $params1, $values1, $params2, $values2);
+            }
         }
     }
 ?>
