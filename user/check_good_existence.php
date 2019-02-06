@@ -7,11 +7,7 @@
             $table  = 'goods';
             $params = array('id', 'eid');
             $values = array($user->info['id'], $_POST['eid']);
-            if ($link->select($table, null, $params, $values)->rowcount()) {
-                echo $link->delete($table, $params, $values);
-            } else {
-                echo $link->insert($table, $params, $values);
-            }
+            echo $link->select($table, null, $params, $values)->rowcount();
         } else {
             echo 'go away!';
         }
