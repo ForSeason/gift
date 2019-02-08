@@ -1,5 +1,5 @@
 <?php
-    require_once('../method/user_handler.php');
+    // require_once('../method/user_handler.php');
     require_once('../method/chat_handler.php');
     if (isset($_POST['start']) and isset($_POST['step'])) {
         $link  = new pdo_handler();

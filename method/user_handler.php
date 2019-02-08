@@ -60,7 +60,7 @@
                 if ($_FILES['headPic']['error'] == 0 and ($_FILES['headPic']['type'] == 'image/jpeg' or $_FILES['headPic']['type'] == 'image/png')) {
                     //var_dump(time());
                     $file     = $_FILES['headPic']['tmp_name'];
-                    $filename = md5((string)time());
+                    $filename = md5($this->info['id'].(string)time());
                     $filename.= ($_FILES['headPic']['type'] == 'image/jpeg')?'.jpg':'.png';
                     move_uploaded_file($file,'../headPic/'.$filename);
                     $table    = 'user';
@@ -71,6 +71,22 @@
                     $status   = $this->link->update($table, $params1, $values1, $params2, $values2);
                     $this->__construct();
                     return $status;
+                } else {
+                    return 'invalid type';
+                }
+            }
+            return 'go away!';
+        }
+
+        public function upload_pic(){
+            if ($this->status == 1 and isset($_FILES['pic'])) {
+                if ($_FILES['pic']['error'] == 0 and ($_FILES['pic']['type'] == 'image/jpeg' or $_FILES['pic']['type'] == 'image/png')) {
+                    //var_dump(time());
+                    $file     = $_FILES['pic']['tmp_name'];
+                    $filename = md5($this->info['id'].(string)time());
+                    $filename.= ($_FILES['pic']['type'] == 'image/jpeg')?'.jpg':'.png';
+                    move_uploaded_file($file,'../pic/'.$filename);
+                    return 'scut18pie1.top/test/gift/pic/'.$filename;
                 } else {
                     return 'invalid type';
                 }
