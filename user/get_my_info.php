@@ -9,7 +9,7 @@
         $info['nickname']  = $user->info['nickname'];
         $info['sex']       = $user->info['sex'];
         $info['headPic']   = $user->info['headPic'];
-        $info['adress']    = $user->info['adress'];
+        $info['address']   = $user->info['address'];
         $info['phone']     = $user->info['phone'];
         $info['selfIntro'] = $user->info['selfIntro'];
         $res = array();
