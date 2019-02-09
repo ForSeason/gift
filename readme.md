@@ -1,6 +1,6 @@
 # 变量说明
 
-* id，password，nickname，sex，adress， phone之类的不用说了吧
+* id，password，nickname，sex，address， phone之类的不用说了吧
 * createTime是时间戳，由于前后端时间单位不一样，前端使用的时候记得在我的时间戳后加两个0
 * headPic指头像
 * eid是event_id的简称，而event指失物招领和寻物启事
@@ -20,7 +20,7 @@
 | nickname | string | 用户的昵称，长度30以下，只能使用英文数字中文下划线组合 |
 | password | string | 用户登录使用的口令，会经过md5加密后保存在服务器 |
 | sex | int | 0=>男；1=>女 |
-| adress | string | 不超过100个字符 |
+| address | string | 不超过100个字符 |
 | phone | string | 不超过20个数字 |
 
 返回数据格式: TEXT
@@ -62,7 +62,7 @@ params格式:
 
 | 数据类型 | 描述 |
 | --------- | ----- |
-| string | 'adress', 'phone', 'selfIntro', 'sex', 'nickname'五个任选一个以上 |
+| string | 'address', 'phone', 'selfIntro', 'sex', 'nickname'五个任选一个以上 |
 
 values格式: 
 
@@ -109,7 +109,7 @@ info格式:
 | id | string |
 | nickname | string |
 | sex | int |
-| adress | string |
+| address | string |
 | headPic | string/null |
 | phone | string |
 | selfIntro | string/null |
@@ -140,7 +140,7 @@ info格式:
 | id | string |
 | nickname | string |
 | sex | int |
-| adress | string |
+| address | string |
 | headPic | string/null |
 | phone | string |
 | selfIntro | string/null |
@@ -211,7 +211,7 @@ info格式:
 | ------ | --------- | ----- |
 | content | string | 失物招领的详细信息 |
 | phone | string | 发起人手机 |
-| adress | string | 交货地址 |
+| address | string | 交货地址 |
 | 任意，尽量使用正常的英文字母组合 | jpg/png | 附带的图片 |
 
 图片可以是复数
@@ -234,7 +234,7 @@ info格式:
 | ------ | --------- | ----- |
 | content | string | 寻物的详细信息 |
 | phone | string | 收货人手机 |
-| adress | string | 收货地址 |
+| address | string | 收货地址 |
 | 任意，尽量使用正常的英文字母组合 | jpg/png | 附带的图片 |
 
 图片可以是复数
@@ -302,7 +302,7 @@ info格式:
 | id | string | 发起用户id |
 | content | string | 内容描述 |
 | phone | string | 电话 |
-| adress | string | 交货地址 |
+| address | string | 交货地址 |
 | createTime | string | 时间戳，**请前端自行补上两个0** |
 | clicks | int | 点击量 |
 | goods | int | 点赞量 |

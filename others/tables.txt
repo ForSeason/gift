@@ -6,7 +6,7 @@ nickname text not null,
 sex int not null,
 headPic text,
 phone text,
-adress text,
+address text,
 selfIntro longtext
 );
 
@@ -17,7 +17,7 @@ rid int not null,
 id varchar(20) not null,
 content longtext,
 phone text,
-adress text,
+address text,
 createTime text
 );
 

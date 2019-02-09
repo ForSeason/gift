@@ -21,7 +21,7 @@
                 $this->info['nickname']  = $user['nickname'];
                 $this->info['sex']       = (int)$user['sex'];
                 $this->info['headPic']   = $user['headPic'];
-                $this->info['adress']    = $user['adress'];
+                $this->info['address']    = $user['address'];
                 $this->info['phone']     = $user['phone'];
                 $this->info['selfIntro'] = $user['selfIntro'];
                 $this->status = 1;
@@ -30,10 +30,10 @@
             }
         }
 
-        public function register($id, $nickname, $password, $sex, $adress, $phone){
+        public function register($id, $nickname, $password, $sex, $address, $phone){
             $table  = 'user';
-            $params = array('id', 'nickname', 'password', 'sex', 'adress', 'phone');
-            $values = array($id, $nickname, md5($password), (int)$sex, $adress, $phone);
+            $params = array('id', 'nickname', 'password', 'sex', 'address', 'phone');
+            $values = array($id, $nickname, md5($password), (int)$sex, $address, $phone);
             return $this->link->insert($table, $params, $values);
         }
 
@@ -94,11 +94,11 @@
             return 'go away!';
         }
 
-        public function update_my_info($params2, $values2){
-            if ($this->stauts == 1) {
-                $table = 'user';
-                $params1 = array('id');
-                $values1 = array($this->info['id']);
+        public function update_my_info($params1, $values1){
+            if ($this->status == 1) {
+                $table   = 'user';
+                $params2 = array('id');
+                $values2 = array($this->info['id']);
                 return $this->link->update($table, $params1, $values1, $params2, $values2);
             }
         }

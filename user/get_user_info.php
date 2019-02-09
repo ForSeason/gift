@@ -12,7 +12,7 @@
         $info['nickname']  = $user['nickname'];
         $info['sex']       = $user['sex'];
         $info['headPic']   = $user['headPic'];
-        $info['adress']    = $user['adress'];
+        $info['address']   = $user['address'];
         $info['phone']     = $user['phone'];
         $info['selfIntro'] = $user['selfIntro'];
         echo json_encode($info);
