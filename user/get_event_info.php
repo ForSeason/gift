@@ -10,6 +10,8 @@
         $goods   = $link->select($table, null, $params, $values)->rowCount();
         $table   = 'clicks';
         $clicks  = $link->select($table, null, $params, $values)->rowCount();
+        $table   = 'chats';
+        $chats   = $link->select($table, null, array('rid'), array($res['rid']))->rowCount();
         $table   = 'pics';
         $pics    = array();
         $stmt    = $link->select($table, null, $params, $values);
@@ -19,6 +21,7 @@
         $res['goods']  = $goods;
         $res['clicks'] = $clicks;
         $res['pics']   = $pics;
+        $res['chats']  = $chats;
         // if ($res['type'] == 0) {
         //     $members = array()
         //     $table   = 'members';
@@ -29,5 +32,7 @@
         //     $res['members'] = $members;
         // }
         echo json_encode($res);
+    } else {
+        echo 'go away!';
     }
 ?>
