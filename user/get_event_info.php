@@ -10,8 +10,15 @@
         $goods   = $link->select($table, null, $params, $values)->rowCount();
         $table   = 'clicks';
         $clicks  = $link->select($table, null, $params, $values)->rowCount();
+        $table   = 'pics';
+        $pics    = array();
+        $stmt    = $link->select($table, null, $params, $values);
+        foreach ($stmt as $row) {
+            $pics[] = $row['url'];
+        }
         $res['goods']  = $goods;
         $res['clicks'] = $clicks;
+        $res['pics']   = $pics;
         // if ($res['type'] == 0) {
         //     $members = array()
         //     $table   = 'members';

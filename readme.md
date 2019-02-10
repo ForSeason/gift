@@ -1,3 +1,6 @@
+[TOC]
+
+
 # 变量说明
 
 * id，password，nickname，sex，address， phone之类的不用说了吧
@@ -304,6 +307,7 @@ info格式:
 | phone | string | 电话 |
 | address | string | 交货地址 |
 | createTime | string | 时间戳，**请前端自行补上两个0** |
+| pics | list | 包含图片的url，数据类型都是string |
 | clicks | int | 点击量 |
 | goods | int | 点赞量 |
 

@@ -20,7 +20,7 @@
             $eid        = $link->lastInsertId('eid');
             if ($_FILES != array()) foreach ($_FILES as $file) if ($file['error'] == 0 and ($file['type'] == 'image/jpeg' or $file['type'] == 'image/png')) {
                 $fileT    = $file['tmp_name'];
-                $filename = md5((string)time());
+                $filename = md5((string)time().$file['name']);
                 $filename.= ($file['type'] == 'image/jpeg')?'.jpg':'.png';
                 move_uploaded_file($fileT,'../pic/'.$filename);
                 $table  = 'pics';
