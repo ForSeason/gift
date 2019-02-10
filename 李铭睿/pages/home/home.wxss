@@ -1,0 +1,18 @@
+/* pages/home/home.wxss */
+.button {
+  height: 50pt;
+  width: 180pt;
+}
+.sousuo{
+  height: 50pt;
+  width: 100pt;
+}
+.sousuobutton {
+  height: 50pt;
+  width: 90pt;
+}
+.fenjie {
+  height: 40pt;
+  width: 360pt;
+  background-color: gray;
+}

@@ -1,0 +1,15 @@
+<!--pages/index1/index1.wxml-->
+<view class='container'>
+  <text class='title'>失物招领</text>
+  <button class='login' bindtap='login1' hidden='{{hidden}}'>登录</button>
+  <button class='zhuce' bindtap='zhuce1' hidden='{{hidden}}'>注册</button>
+  <view class='loginborder' hidden='{{!hidden}}'>
+    <form bindsubmit='formsubmit'>
+    <text class='zhanghao'>账号</text>
+    <input name='id'></input>
+    <text class='mima'>密码</text>
+    <input name='password'></input>
+    <button class='nextlogin' form-type='submit'>登录</button>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+<!--pages/home/home.wxml-->
+<view class='container'>
+  <button class='button' bindtap='xunwuqishi1'>寻物启事</button>
+  <button class='button'bindtap='shiwuzhaoling'>失物招领</button>
+  <form bindsubmit='search'>
+    <input name='content' class='sousuo'></input>
+    <button form-type='submit' class='sousuobutton'>搜索</button>
+  </form>
+  <view class='fenjie'></view>
+</view>

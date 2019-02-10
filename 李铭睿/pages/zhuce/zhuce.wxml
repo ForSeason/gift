@@ -1,0 +1,34 @@
+<!--pages/zhuce/zhuce.wxml-->
+<view class='container'>
+  <form bindsubmit='formsubmit'>
+    <view class='zhucekuang'>注册</view>
+    <view class='section_gap'>
+      <view class='section_title'>姓名（必填）</view>
+      <input name='nickname' class='neirong'></input>
+    </view>
+    <view class='section_gap'>
+      <view class='section_title'>手机号（必填）</view>
+      <input name='phone' class='neirong'></input>
+    </view>
+    <view class='section_gap'>
+      <view class='section_title'>性别（必填）</view>
+      <radio-group name="sex" class='neirong'>
+        <label class='neirong'><radio value="0" />男</label>
+        <label class='neirong'><radio value="1" />女</label>
+      </radio-group>
+    </view>
+    <view class='section_gap'>
+      <view class='section_title'>账号（必填）</view>
+      <input name='id' class='neirong'></input>
+    </view>
+    <view class='section_gap'>
+      <view class='section_title'>密码（必填）</view>
+      <input name='password' class='neirong'></input>
+    </view>
+    <view class='section_gap'>
+      <view class='section_title'>地址（选填）</view>
+      <input name='adress' class='neirong'></input>
+    </view>
+    <button form-type='submit' class='submit'>提交</button>
+  </form>
+</view>

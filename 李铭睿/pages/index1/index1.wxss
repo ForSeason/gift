@@ -1,0 +1,32 @@
+/* pages/index1/index1.wxss */
+.title {
+  font-size: 32pt;
+}
+.login {
+  font-size: 20pt;
+  height: 40pt;
+  width: 140pt;
+  background-color: #0099ff;
+}
+.zhuce {
+  font-size: 20pt;
+  height: 40pt;
+  width: 140pt;
+}
+.loginborder {
+  border-style: solid;
+  border-width: thin;
+  height: 170pt;
+  width: 300pt;
+}
+.nextlogin {
+  font-size: 20pt;
+  height: 40pt;
+  width: 140pt;
+}
+.zhanghao{
+  font-size: 18pt;
+}
+.mima {
+  font-size: 18pt;
+}
