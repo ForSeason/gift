@@ -3,8 +3,8 @@
     <input id="updataPic" accept=".jpg,.png" @change="updataPic" type="file">
     <router-link to="/"><img src="../../../static/img/back_bl.png"></router-link>
     <div class="selfTop">
-        <div class="show"> <img @click="getpic" id="myimg"  :src="userpic"></div>
-        <label>{{this.global.info.username}}</label>
+        <div class="show"> <img @load="configPic" @click="getpic" id="myimg"  :src="userpic"></div>
+        <label>{{this.$store.state.userinfo.name}}</label>
     </div>
     <div class="selfMid">
         <mt-field label="姓名" :state="errorList['name'].state" @input="checkName" placeholder="老王" v-model="username"></mt-field>
@@ -28,26 +28,52 @@ import { Field } from 'mint-ui';
 export default {
     data(){
         return {
-            username:'',
-            userphone:'',
-            useraddress:'',
-            userselfintro:'',
-            userpic:'',
+            username:this.$store.state.userinfo.name,
+            userphone:this.$store.state.userinfo.phone,
+            useraddress:this.$store.state.userinfo.address,
+            userselfintro:this.$store.state.userinfo.intro,
+            userpic:this.$store.state.userinfo.pic,
+            change:0,
             errorList:{
                 name:{
                     state:'none',
                     error:''
-
                 },
                 phone:{
                     state:'none',
                     error:''
-
                 }
             }
         }
     },
     methods:{
+        getUserInfo(){
+            this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
+            .then(res => {
+                if(res.data.status === 0){
+                    Toast({
+                        message:"登录出现异常",
+                        position:'bottom',
+                        duration:'1000',
+                    });
+                    return;
+                }
+                var userinfo = res.data.info;
+                this.$store.commit('setId',userinfo.id);
+                this.$store.commit('setName',userinfo.nickname);
+                this.$store.commit('setSex',userinfo.sex);
+                this.$store.commit('setPhone',userinfo.phone);
+                this.$store.commit('setIntro',userinfo.selfIntro);
+                var userPic = userinfo.headPic;
+                if(userPic === null){
+                    userPic = this.$store.state.defalutPic;
+                } else {
+                    userPic = 'http://' + userPic;
+                }
+                this.$store.commit('setPic',userPic);
+                this.$store.commit('setAddress',userinfo.address);
+            });
+        },
         checkName(){
             if(this.username === ''){
                 this.errorList['name'].state = 'error';
@@ -84,7 +110,7 @@ export default {
         checkPic(){
             var file =document.getElementById('updataPic').files[0];
             if(!file){
-                return 3;
+                return 0;
             }
             if(!/.*(jpg)|(png)$/.test(file.name)){
                 return 1;
@@ -93,16 +119,14 @@ export default {
                 return 2;
             }
             return 0;
-
-
         },
         save(){
             if(this.checkPic() || !this.checkPhone || !this.checkName){
                 return;
             }
             var file =document.getElementById('updataPic').files[0];
+            console.log(file);
             var formdata = new FormData();
-            
             formdata.append('headPic',file);
             this.$axios.post('http://scut18pie1.top/test/gift/user/update_my_info.php',
             qs.stringify({
@@ -111,11 +135,19 @@ export default {
                 
             })).then(res => {
                 console.log('add',res.data);
-                Toast({
-                    message:"修改成功",
-                    position:'bottom',
-                    duration:'1000',
-                    });
+                if(this.change !== 1){
+                    this.change = 1;
+                    return
+                }
+                if(res.data === 1 || !file){
+                    Toast({
+                        message:"修改成功",
+                        position:'bottom',
+                        duration:'1000',
+                        });
+                        this.getUserInfo();
+                }
+
             });
             if(file){
             this.$axios({
@@ -125,12 +157,17 @@ export default {
                 headers:{'Content-Type':'multipart/form-data'},
             })
             .then(res => {
+                if(this.change !== 1){
+                    this.change = 1;
+                    return
+                }
                 if(res.data === 1){
                     Toast({
-                    message:"修改成功",
-                    position:'bottom',
-                    duration:'1000',
-                    });
+                        message:"修改成功",
+                        position:'bottom',
+                        duration:'1000',
+                        });
+                        this.getUserInfo();
                 }
             })
 
@@ -139,6 +176,15 @@ export default {
         },
         getpic(){
             document.getElementById('updataPic').click();
+        },
+        configPic(e){
+            var img = e.target;
+            if(img.naturalWidth > img.naturalHeight){
+                img.style = 'width:auto;height:100%';
+            } else {
+                img.style = 'width:100%;height:auto';
+            }
+
         },
         updataPic(e){
             var res = this.checkPic();
@@ -174,46 +220,9 @@ export default {
                     }        
                 }
             };
-            console.log(this.checkPic());
         }
     },
     mounted(){
-        var img = document.getElementById("myimg");
-        img.onload = function(){
-            if(img.naturalWidth > img.naturalHeight){
-                img.style = 'height:100%;width:auto';
-            } else {
-                img.style = 'width:100%;height:auto';
-
-            }
-        }
-         this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
-        .then(res => {
-            if(res.data.status === 0){
-                Toast({
-                    message:"登录出现异常",
-                    position:'bottom',
-                    duration:'1000',
-                });
-                return;
-            }
-            var userinfo = res.data.info;
-            this.global.info.userid = userinfo.id;
-            this.username = this.global.info.username = userinfo.nickname;
-            this.global.info.usersex = userinfo.sex === 0 ? "男" : "女";
-            this.userphone = this.global.info.userphone = userinfo.phone;
-            this.userselfintro = this.global.info.userselfintro = userinfo.selfIntro;
-            this.userpic = this.global.info.userpic = userinfo.headPic;
-            this.global.info.uid = userinfo.uid;
-            this.useraddress = this.global.info.useraddress = userinfo.address;
-            if(this.userpic === null){
-                this.userpic = '../../../static/img/default.jpg';
-            }
-            else {
-                this.userpic = 'http://' + this.userpic;
-
-            }
-        });
     },
     computed:{
     }

@@ -31,31 +31,40 @@ export default {
         }
     },
     methods:{
+        getUserInfo(){
+            this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
+            .then(res => {
+                if(res.data.status === 0){
+                    Toast({
+                        message:"登录出现异常",
+                        position:'bottom',
+                        duration:'1000',
+                    });
+                    return;
+                }
+                var userinfo = res.data.info;
+                this.$store.commit('setId',userinfo.id);
+                this.$store.commit('setName',userinfo.nickname);
+                this.$store.commit('setSex',userinfo.sex);
+                this.$store.commit('setPhone',userinfo.phone);
+                this.$store.commit('setIntro',userinfo.selfIntro);
+                var userPic = userinfo.headPic;
+                if(userPic === null){
+                    userPic = this.$store.state.defalutPic;
+                } else {
+                    userPic = 'http://' + userPic;
+                }
+                this.$store.commit('setPic',userPic);
+                this.$store.commit('setAddress',userinfo.address);
+            });
+            this.$store.commit('setLogState',1);
+            this.$router.push('/');
+        },
         login(){
-            this.global.info.userpic = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1549169583682&di=0a10fede3c3dcc3401e83334b880b1af&imgtype=0&src=http%3A%2F%2Fpre00.deviantart.net%2F601c%2Fth%2Fpre%2Ff%2F2017%2F310%2Fd%2Fd%2F__foxy___mangle____profile_pic___by_juliedraw2046-dbsx5pf.png'
              if(!/^[-\w_\u4e00-\u9fa5]+$/.test(this.userid)){
                 this.isLoginFail = 2;
                 return;
             }
-            
-            // ///////
-            // this.$axios({
-            //     method:'post',
-            //     url:'http://scut18pie1.top/test/gift/user/response_login.php',
-            //     data:qs.stringify(
-            //          {
-            //         'id':this.userid,
-            //         'password':this.userpassword
-            //     }
-            //     )
-            //     ,
-            //     headers:{'Content-Type':'application/x-www-form-urlencoded'}
-            // }).then(function(res){
-            //     console.log(res.data);
-            // })
-            // .catch(function(){console.log("err")});
-            // return;
-            // //////
             this.$axios.post("http://scut18pie1.top/test/gift/user/login.php",
             qs.stringify({
                 id:this.userid,
@@ -75,16 +84,14 @@ export default {
                         }
                     })
                 } else if (res.data === 1){
-
                     this.isLoginFail = -1;
                         Toast({
                             message:"登录成功",
                             position:'bottom',
                             duration:'1000',
                         });
-                        this.global.logState = 1;
-                        this.$router.push('/self');
-                    
+                        this.getUserInfo();
+
                 }
             })
         }

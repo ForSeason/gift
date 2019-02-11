@@ -1,17 +1,16 @@
 <template>
-<div @click="skip" class="selfItem">
+<div @click="init" class="selfItem">
     <div class="selfItemTop">
-        <div class="imgShow"><div class="lastContentImg"><img class="showImg" :src="info.userpic"></div></div>
-        <label class="myname">{{info.username}}</label>
+        <div class="imgShow"><div class="lastContentImg"><img class="showImg" :src="'http://' + info.userinfo.headPic"></div></div>
+        <label class="myname">{{info.userinfo.nickname}}</label>
         <label class="mytime">{{this.time}}</label>
     </div>
     <div class="selfItemMid">
         {{info.content}}
         <div @click.stop="" class="contentImg">
-            <viewer :images="images">
+            <viewer :images="info.picList">
                 <div v-for="(item,index) in info.picList" :key="index" class="subContentImg">
-                    <div class="lastContentImg"><img class="showImg" :src="item" :key="item"></div>
-                    
+                    <div class="lastContentImg"><img class="showImg" :src="'http://'+item" :key="item"></div>
                 </div>
             </viewer>  
         </div>
@@ -43,16 +42,17 @@
 <script>
 export default {
     props:['info'],
+    watch:{
+    },
     data(){
         return{
-            images:this.info.picList,
         }
     },
     methods:{
-        skip(){
-            console.log("click");
+        init(){
 
-        },
+        }
+
     },
     computed:{
         time(){
@@ -74,6 +74,7 @@ export default {
 
     },
     mounted(){
+        console.log("self");
         var imgs = document.getElementsByClassName("showImg");
         for(var i = 0;i < imgs.length;i++){
             imgs[i].onload = function()
@@ -172,6 +173,7 @@ export default {
     position: relative;
     font-weight: 530;
     padding:0 5vw;
+    margin-top:5vw;
 }
 .contentImg{
     line-height: 0;

@@ -71,6 +71,33 @@ export default {
         }
     },
     methods:{
+        getUserInfo(){
+            this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
+            .then(res => {
+                if(res.data.status === 0){
+                    Toast({
+                        message:"登录出现异常",
+                        position:'bottom',
+                        duration:'1000',
+                    });
+                    return;
+                }
+                var userinfo = res.data.info;
+                this.$store.commit('setId',userinfo.id);
+                this.$store.commit('setName',userinfo.nickname);
+                this.$store.commit('setSex',userinfo.sex);
+                this.$store.commit('setPhone',userinfo.phone);
+                this.$store.commit('setIntro',userinfo.selfIntro);
+                var userPic = userinfo.headPic;
+                if(userPic === null){
+                    userPic = this.$store.state.defalutPic;
+                } else {
+                    userPic = 'http://' + userPic;
+                }
+                this.$store.commit('setPic',userPic);
+                this.$store.commit('setAddress',userinfo.address);
+            });
+        },
         checkName(){
             if(this.username === ''){
                 this.errorList['name'].state = 'error';
@@ -183,9 +210,12 @@ export default {
                         id:this.userid,
                         password:this.userpassword
                     })).then(res => {
-                        this.global.logState = 1;
+                        this.getUserInfo();
+                        this.$store.commit('setLogState',1);
                         MessageBox.confirm('是否去完善个人信息?','注册成功').then(action => {
                         this.$router.push('/self');
+                        }).catch(() => {
+                            this.$router.push('/');
                         })
                     });
                     }
