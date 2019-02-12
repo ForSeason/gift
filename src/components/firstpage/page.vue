@@ -1,9 +1,31 @@
 <template>
 <div class="firstPage">
+    
     <div class="firstTop">
+        
+        <div class='towChoices'>
+            <mt-navbar v-model="selected">
+                <mt-tab-item id="1">全部</mt-tab-item>
+                <mt-tab-item id="2">寻物启事</mt-tab-item>
+                <mt-tab-item id="3">失物招领</mt-tab-item>
+            </mt-navbar>
+        </div>
+        <search></search>
     </div>
     <div class="firstMid">
-        <selfitem v-for="(item,index) in this.List" :info="item" :key="index"></selfitem>
+        <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottomAllLoaded="allLoaded" ref="loadmore">
+            <mt-tab-container v-model="selected">
+                <mt-tab-container-item id="1">
+                    <selfitem v-for="(item,index) in this.List" :info="item" :key="index"></selfitem>
+                </mt-tab-container-item>
+                 <mt-tab-container-item id="2">
+                    <selfitem v-for="(item,index) in this.foundList" :info="item" :key="index"></selfitem>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="3">
+                    <selfitem v-for="(item,index) in this.lostList" :info="item" :key="index"></selfitem>
+                </mt-tab-container-item>
+            </mt-tab-container>
+        </mt-loadmore>
     </div>
     <div class=firstBottom >
         <guide></guide>
@@ -12,24 +34,34 @@
     
 </template>
 <script>
+import { Navbar, TabItem } from 'mint-ui';
 import selfitem from '../self/selfitem.vue';
 import guide from '../guide/bottom.vue';
+import search from './search.vue';
+import { TabContainer, TabContainerItem } from 'mint-ui';
+import { Loadmore } from 'mint-ui';
+import { setTimeout } from 'timers';
 export default {
     mounted(){
-        console.log('dd');
-        this.getList(0);
+        this.getList(0,0);
+        this.getList(0,1);
+        this.getList(0,2);
     },
     components:{
         selfitem,
         guide,
+        search,
     },
     watch:{
         List(val){
-            console.log(val);
+
         }
     },
     data(){
         return {
+            selected:'1',
+            allLoaded:false,
+            active:'',
             List:[
                 // {
                 //     eid:12,
@@ -45,17 +77,51 @@ export default {
                 //     }
                 // }
             ],
+            lostList:[],
+            foundList:[],
 
         }
     },
     methods:{
-        getList(start){
+        overLoad(type){
+            if(type === 1){
+                this.$refs.loadmore.onTopLoaded();
+            } else if(type === 2){
+                this.$refs.loadmore.onBottomLoaded();
+            }
+            
+            
+        },
+        loadTop(){
+            setTimeout(() =>{this.overLoad(1)},500);
+        },
+        loadBottom(){
+            setTimeout(() =>{this.overLoad(2)},500);
+        },
+        listSort(itemOne,itemTwo){
+            if(itemOne.time > itemTwo.time){
+                return -1;
+            } else {
+                return 1;
+            }
+
+        },
+        getList(start,type){
             var _this = this;
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_list.php',
-            qs.stringify({
-                start:start,
-                step:5,
-            }))
+            var data = '';
+            if(type === 0){
+                data = qs.stringify({
+                    start:start,
+                    step:1,
+                })
+            } else {
+                data = qs.stringify({
+                    start:start,
+                    step:1,
+                    type:type
+                })
+            }
+            this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_list.php',data)
             .then(res => {
                 for(var i = 0,j = 0;i<res.data.length;i++){
                     this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
@@ -79,14 +145,19 @@ export default {
                             listItem.commentNumber = re.data.chats;
                             listItem.rid = re.data.rid;
                             listItem.type = re.data.type;
-                            _this.List[start+j] = (JSON.parse(JSON.stringify(listItem)));
-                            j++;
-                            var fakeList = [];
-                            for(var k = 0;k < _this.List.length;k++){
-                                fakeList[k] = _this.List[k];
+                            if(type === 0){
+                                _this.List.push(listItem);
+                                _this.List.sort(this.listSort);
+                            } else if(type === 1){
+                                _this.lostList.push(listItem);
+                                _this.lostList.sort(this.listSort);
+                            } else if(type ===2 ){
+                                _this.foundList.push(listItem);
+                                _this.foundList.sort(this.listSort);
                             }
-                            _this.List = fakeList;
-                            //console.log(_this.List);
+
+                        
+
                         })
 
                     })
@@ -100,6 +171,21 @@ export default {
 }
 </script>
 <style>
+.towChoices{
+    /* display: flex; */
+    height: 10vw;
+}
+.mint-navbar{
+    height: 100%;
+}
+.towChoices button{
+    background: white;
+    flex-grow: 1;
+    color:white;
+    outline: 0;
+    border:none;
+    border-left:1vw #CCC solid
+}
 .firstPage{
     padding:0 0.5vw;
 
@@ -107,6 +193,8 @@ export default {
 }
 .firstMid{
     padding:0 3vw;
+    height:calc(100vh - 45vw);
+    overflow:scroll;
 }
 .firstBottom{
     position: fixed;

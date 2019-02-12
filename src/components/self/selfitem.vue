@@ -1,7 +1,7 @@
 <template>
 <div @click="init" class="selfItem">
     <div class="selfItemTop">
-        <div class="imgShow"><div class="lastContentImg"><img class="showImg" :src="'http://' + info.userinfo.headPic"></div></div>
+        <div class="imgShow"><div class="lastContentImg"><img @load="configPic" class="showImg" :src="'http://' + info.userinfo.headPic"></div></div>
         <label class="myname">{{info.userinfo.nickname}}</label>
         <label class="mytime">{{this.time}}</label>
     </div>
@@ -10,7 +10,7 @@
         <div @click.stop="" class="contentImg">
             <viewer :images="info.picList">
                 <div v-for="(item,index) in info.picList" :key="index" class="subContentImg">
-                    <div class="lastContentImg"><img class="showImg" :src="'http://'+item" :key="item"></div>
+                    <div class="lastContentImg"><img class="showImg" @load="configPic" :src="'http://'+item" :key="item"></div>
                 </div>
             </viewer>  
         </div>
@@ -27,7 +27,7 @@
         </div>
          <div class="bottomItem">
             <img src="../../../static/img/good2.png">
-            <label>{{info.commentNumber}}</label>
+            <label>{{info.goodNumber}}</label>
         </div>
          <div class="bottomItem">
             <img src="../../../static/img/share2.png">
@@ -50,8 +50,24 @@ export default {
     },
     methods:{
         init(){
+            this.$router.push({
+                path:'/detail',
+                query:{
+                    info:this.info,
+                }
+            })
 
-        }
+
+        },
+        configPic(e){
+            var img = e.target;
+            if(img.naturalWidth > img.naturalHeight){
+                img.style = 'width:auto;height:100%';
+            } else {
+                img.style = 'width:100%;height:auto';
+            }
+
+        },
 
     },
     computed:{
@@ -73,20 +89,7 @@ export default {
         }
 
     },
-    mounted(){
-        console.log("self");
-        var imgs = document.getElementsByClassName("showImg");
-        for(var i = 0;i < imgs.length;i++){
-            imgs[i].onload = function()
-            {
-                if(this.naturalWidth > this.naturalHeight){
-                this.style = 'width:auto;height:100%';
-                } else {
-                    this.style = 'width:100%;height:auto';
-                }
-            }
-        }
-        
+    mounted(){      
     }
 
     

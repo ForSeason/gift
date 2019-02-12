@@ -11,6 +11,7 @@ import 'mint-ui/lib/style.css'
 import { Toast } from 'mint-ui';
 import Viewer from 'v-viewer'   //图片预览插件
 import 'viewerjs/dist/viewer.css'
+
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state:{

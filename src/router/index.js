@@ -4,6 +4,7 @@ import logchoose from '@/components/login/logchoose.vue'
 import firstPage from '@/components/firstpage/page.vue'
 import register from '@/components/login/register.vue'
 import self from '@/components/self/self.vue'
+import detail from '@/components/self/detail.vue'
 import assign from '@/components/assign/assign.vue'
 
 Vue.use(Router)
@@ -38,6 +39,14 @@ export default new Router({
       path: '/assign',
       name: 'assign',
       component: assign,
+      meta: {
+        requireLogin: true,
+      },
+    },
+    {
+      path: '/detail',
+      name: 'detail',
+      component: detail,
       meta: {
         requireLogin: true,
       },
