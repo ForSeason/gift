@@ -1,8 +1,6 @@
 <template>
 <div class="firstPage">
-    
     <div class="firstTop">
-        
         <div class='towChoices'>
             <mt-navbar v-model="selected">
                 <mt-tab-item id="1">全部</mt-tab-item>
@@ -44,8 +42,8 @@ import { setTimeout } from 'timers';
 export default {
     mounted(){
         this.getList(0,0);
-        this.getList(0,1);
-        this.getList(0,2);
+        //this.getList(0,1);
+        //this.getList(0,2);
     },
     components:{
         selfitem,
@@ -112,12 +110,12 @@ export default {
             if(type === 0){
                 data = qs.stringify({
                     start:start,
-                    step:1,
+                    step:5,
                 })
             } else {
                 data = qs.stringify({
                     start:start,
-                    step:1,
+                    step:5,
                     type:type
                 })
             }
@@ -197,8 +195,8 @@ export default {
     overflow:scroll;
 }
 .firstBottom{
-    position: fixed;
-    bottom:0;
+    position:absolute;
+    top:calc(100% - 20vw);
     height:20vw;
      width: 100%;
 

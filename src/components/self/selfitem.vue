@@ -25,8 +25,8 @@
             <img src="../../../static/img/comment2.png">
             <label>{{info.commentNumber}}</label>
         </div>
-         <div class="bottomItem">
-            <img src="../../../static/img/good2.png">
+         <div class="bottomItem" @click.stop="changGood">
+            <img :src="goodPic">
             <label>{{info.goodNumber}}</label>
         </div>
          <div class="bottomItem">
@@ -46,14 +46,61 @@ export default {
     },
     data(){
         return{
+            goodPic:'',
+            isGood:'',
+        }
+    },
+    watch:{
+        isGood(val){
+            if(val === 0){
+                this.goodPic = '../../../static/img/good2.png';
+            } else {
+                this.goodPic = '../../../static/img/good.png';
+
+            }
+
         }
     },
     methods:{
+        changGood(){
+            if(this.$store.state.logState === 0){
+                this.$router.push('/log');
+            }
+
+            this.$axios.post('http://scut18pie1.top/test/gift/user/good.php',
+            qs.stringify({
+                eid:this.info.eid,
+            })).then (res => {
+                if(this.isGood === 0){
+                    this.isGood = 1;
+                    this.info.goodNumber ++;
+                } else {
+                    this.isGood = 0;
+                    this.info.goodNumber --;
+                }
+            })
+
+
+        },
+        setGood(){
+            if(this.$store.state.logState === 0){
+                this.isGood = 0;
+                return;
+            }
+            this.$axios.post('http://scut18pie1.top/test/gift/user/check_good_existence.php',
+            qs.stringify({
+                eid:this.info.eid,
+            }))
+            .then(res => {
+                this.isGood = res.data;
+            });
+        },
         init(){
             this.$router.push({
                 path:'/detail',
                 query:{
-                    info:this.info,
+                    isGood:this.isGood,
+                    eid:this.info.eid,
                 }
             })
 
@@ -89,7 +136,9 @@ export default {
         }
 
     },
-    mounted(){      
+    mounted(){
+        this.setGood();
+   
     }
 
     

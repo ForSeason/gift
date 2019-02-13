@@ -125,7 +125,6 @@ export default {
                 return;
             }
             var file =document.getElementById('updataPic').files[0];
-            console.log(file);
             var formdata = new FormData();
             formdata.append('headPic',file);
             this.$axios.post('http://scut18pie1.top/test/gift/user/update_my_info.php',
@@ -134,7 +133,6 @@ export default {
                     values:[this.useraddress,this.userselfintro,this.userphone,this.username]
                 
             })).then(res => {
-                console.log('add',res.data);
                 if(this.change !== 1){
                     this.change = 1;
                     return
