@@ -42,8 +42,8 @@ import { setTimeout } from 'timers';
 export default {
     mounted(){
         this.getList(0,0);
-        //this.getList(0,1);
-        //this.getList(0,2);
+        this.getList(0,1);
+        this.getList(0,2);
     },
     components:{
         selfitem,

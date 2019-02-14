@@ -6,7 +6,8 @@ import register from '@/components/login/register.vue'
 import self from '@/components/self/self.vue'
 import detail from '@/components/self/detail.vue'
 import assign from '@/components/assign/assign.vue'
-
+import result from '@/components/firstpage/result.vue'
+import chat from '@/components/chat/chat.vue'
 Vue.use(Router)
 
 
@@ -51,6 +52,19 @@ export default new Router({
         requireLogin: true,
       },
     },
+    {
+      path: '/result',
+      name: 'result',
+      component: result
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: chat,
+      meta: {
+        requireLogin: true,
+      },
+    }
     
   ]
 })

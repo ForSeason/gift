@@ -220,7 +220,6 @@ export default {
                     });
                     }
                 }).catch(() => {
-                    console.log("registererr");
                 })
             }
         }

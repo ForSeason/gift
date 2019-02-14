@@ -137,7 +137,7 @@ export default {
                 if(_this.getPic().length === 9){
                     _this.showAdd = false;
                 } 
-                console.log(_this.getPic());
+                e.target.val = '';
             };
            
                

@@ -2,10 +2,10 @@
 <div class="search">
     <div>
         <img src = "../../../static/img/search.png">
-        <input placeholder="搜索" type="text">
+        <input v-model="text" placeholder="搜索" type="text">
     </div>
     
-    <button>搜索</button>
+    <button @click="search">搜索</button>
 
 </div>
     
@@ -14,6 +14,36 @@
 
 <script>
 export default {
+    data() {
+        return {
+            text:'',
+            
+        }
+    },
+    methods: {
+        search(){
+            if(this.text === ''){
+                Toast({
+                    message:"内容不能为空",
+                    position:'bottom',
+                    duration:'1000',
+                });
+                return;
+            }
+            this.$axios.post('http://scut18pie1.top/test/gift/user/search_event.php',
+            qs.stringify({
+                content:this.text,
+            })).then( res => {
+                this.$router.push({
+                    path:'/result',
+                    query:{
+                        info:res.data
+                    }
+                })
+            })
+
+        }
+    },
 
 
 }

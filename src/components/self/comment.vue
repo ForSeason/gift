@@ -28,7 +28,6 @@ export default {
     },
     methods: {
         othWrite(val){
-            console.log(val);
             this.$emit('write',val,this.info.floor,0)
         },
         write(){
@@ -60,7 +59,6 @@ export default {
         },
     },
     mounted() {
-        console.log(this.info.id,this.info.content);
         this.getUserInfo();
         
     },

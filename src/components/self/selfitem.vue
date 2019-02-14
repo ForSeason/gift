@@ -1,8 +1,8 @@
 <template>
 <div @click="init" class="selfItem">
     <div class="selfItemTop">
-        <div class="imgShow"><div class="lastContentImg"><img @load="configPic" class="showImg" :src="'http://' + info.userinfo.headPic"></div></div>
-        <label class="myname">{{info.userinfo.nickname}}</label>
+        <div @click.stop="inChat" class="imgShow"><div class="lastContentImg"><img @load="configPic" class="showImg" :src="pic"></div></div>
+        <label @click.stop="inChat" class="myname">{{info.userinfo.nickname}}</label>
         <label class="mytime">{{this.time}}</label>
     </div>
     <div class="selfItemMid">
@@ -62,6 +62,21 @@ export default {
         }
     },
     methods:{
+        inChat(){
+            if(this.info.userinfo.id === this.$store.state.userinfo.id);
+            this.$router.push({
+                path:'/chat',
+                query:{
+                    myId:this.$store.state.userinfo.id,
+                    myName:this.$store.state.userinfo.name,
+                    myPic:this.$store.state.userinfo.pic,
+                    thatId:this.info.userinfo.id,
+                    thatName:this.info.userinfo.nickname,
+                    thatPic:this.pic,
+                }
+            })
+
+        },
         changGood(){
             if(this.$store.state.logState === 0){
                 this.$router.push('/log');
@@ -133,12 +148,19 @@ export default {
                 var thatTime = new Date(this.info.time);
                 return thatTime.getFullYear()+'-'+thatTime.getMonth()+'-'+thatTime.getDate()+'   '+thatTime.getHours()+':'+thatTime.getMinutes(); 
             }
+        },
+        pic(){
+            if(this.info.userinfo.headPic === null){
+                return '../../../static/img/default.jpg';
+            } else {
+                return 'http://' + this.info.userinfo.headPic;
+            }
         }
 
     },
     mounted(){
         this.setGood();
-   
+
     }
 
     
