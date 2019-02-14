@@ -24,6 +24,7 @@ export default {
         return {
             userinfo:'',
             pic:'',
+            defaultPic:require('../../../static/img/default.jpg'), 
         }
     },
     methods: {
@@ -49,7 +50,7 @@ export default {
             })).then(res => {
                 this.userinfo = res.data;
                 if(this.userinfo.headPic === null){
-                    this.pic = '../../../static/img/default.jpg';
+                    this.pic = this.defaultPic;
                 } else {
                     this.pic = 'http://' + this.userinfo.headPic;
                 }
