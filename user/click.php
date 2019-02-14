@@ -4,10 +4,10 @@
     $link = new pdo_handler();
     if ($user->status == 1) {
         if (isset($_POST['eid'])) {
-            $table  = 'click';
+            $table  = 'clicks';
             $params = array('eid');
             $values = array($_POST['eid']);
-            return $link->insert($table, $params, $values);
+            echo $link->insert($table, $params, $values);
         } else {
             echo 'go away!';
         }

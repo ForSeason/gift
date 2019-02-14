@@ -5,7 +5,7 @@
         $user = new user_handler();
         if ($user->status == 1) {
             $room = new chat_handler($user);
-            echo $room->new_room(0, $_POST['title'], isset($_POST['participants'])); //返回rid
+            echo $room->new_room(0, $_POST['title'], $_POST['participants']); //返回rid
         } else {
             echo 'login first!';
         }

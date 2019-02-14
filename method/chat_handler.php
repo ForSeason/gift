@@ -40,10 +40,10 @@
             return true;
         }
 
-        public function quit_room($id){
+        public function quit_room(){
             $table  = 'members';
             $params = array('id', 'rid');
-            $values = array($id, $this->rid);
+            $values = array($this->user->info['id'], $this->rid);
             $this->link->delete($table, $params, $values);
             $params = array('rid');
             $values = array($rid);
@@ -57,8 +57,9 @@
 
         public function push($content){
             $table  = 'chats';
-            $params = array('id', 'rid', 'content', 'creatTime');
+            $params = array('id', 'rid', 'content', 'createTime');
             $values = array($this->user->info['id'], $this->rid, $content, time());
+            // var_dump($values);
             return $this->link->insert($table, $params, $values);
         }
 
