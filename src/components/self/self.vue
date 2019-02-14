@@ -310,6 +310,9 @@ a img{
     margin-top:3vw;
     margin-left: 2vw;
 }
+.selfMid .mint-cell-wrapper{
+    border-bottom: #CCC solid 0.3vw;
+}
 
 
 </style>

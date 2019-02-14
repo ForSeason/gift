@@ -287,22 +287,22 @@ div{
     margin-top:3vw;
     margin-bottom: 5vw;
 }
-.mint-cell-wrapper{
+.registerMid .mint-cell-wrapper{
     border-top:0;
     border-bottom:#CCC solid 0.5vw;
     background-image: none;
 
 }
-.mint-radiolist .mint-cell{
+.registerMid .mint-radiolist .mint-cell{
     position: relative;
     height: 15vw;
     margin:auto auto;
 }
-.mint-radiolist .mint-cell .mint-cell-wrapper{
+.registerMid .mint-radiolist .mint-cell .mint-cell-wrapper{
     height: 15vw;
 
 }
-.mint-radiolist .mint-cell:last-child{
+.registerMid .mint-radiolist .mint-cell:last-child{
     background-image: none;
 }
 .error{
@@ -331,21 +331,21 @@ div{
     padding-left: 7vw;
     border-radius: 2vw;
 }
-.mint-field-core{
+.registerMid .mint-field-core{
     position: relative;
 }
 
-.mint-radiolist .mint-cell{
+.registerMid .mint-radiolist .mint-cell{
     float: left;
     width:30vw;
 }
-.mint-radiolist .mint-cell-wrapper{
+.registerMid .mint-radiolist .mint-cell-wrapper{
     border:none;
 }
-.mint-radiolist-title{
+.registerMid .mint-radiolist-title{
     margin: 0;
 }
-.mint-field-other{
+.registerMid .mint-field-other{
     position: relative;
     left:-15vw;
     height: 15vw;
