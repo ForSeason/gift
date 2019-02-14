@@ -40,6 +40,7 @@ export default {
     padding: 0;
     font-size: 5vw;
     width:100vw;
+    height: 100vh;
     background-color: white;
 }
 #logChoose img{

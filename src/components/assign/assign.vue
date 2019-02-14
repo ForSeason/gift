@@ -8,7 +8,7 @@
             </mt-header>
         </div>
         <div class="assignMid">
-            <input id="updataPic" accept=".jpg,.png" @change="updataPic" type="file">
+            <input id="updataPic" accept="image/*" @change="updataPic" type="file">
             <mt-field label="" placeholder="写点什么吧..." type="textarea" rows="4" v-model="content">
             </mt-field>
             <mt-radio title="发布类型" v-model="fineType" :options="['失物招领', '寻物启事']"></mt-radio>

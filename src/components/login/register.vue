@@ -317,12 +317,18 @@ div{
 .error img{
     height: 5vw;
     width: 5vw;
-    margin-right: 1vw;
+    left: 1vw;
+    position:absolute;
+    top:0;
+    bottom: 0;
+    margin:auto auto;
 
 }
 .error label{
+    position: relative;
     border:red 0.3vw solid;
     padding:1vw;
+    padding-left: 7vw;
     border-radius: 2vw;
 }
 .mint-field-core{

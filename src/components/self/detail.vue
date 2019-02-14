@@ -60,6 +60,9 @@ export default {
             toFloor: null,
             toMessage:'发表评论...',
             isDefault:0,
+            goodAct:require('../../../static/img/good.png'), 
+            goodUnAct:require('../../../static/img/good2.png'), 
+            defaultPic:require('../../../static/img/default.jpg'), 
             info:
                 {
                     eid:this.$route.query.eid,
@@ -236,9 +239,9 @@ export default {
         },
         setGood(){
             if(this.isGood === 0){
-                this.goodPic = '../../../static/img/good2.png';
+                this.goodPic = this.goodUnAct;
             } else {
-                this.goodPic = '../../../static/img/good.png';
+                this.goodPic = this.goodAct;
             }
         },
         changeGood(){

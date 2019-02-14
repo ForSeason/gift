@@ -15,7 +15,7 @@ import 'viewerjs/dist/viewer.css'
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state:{
-    defalutPic:'../../../static/img/default.jpg',
+    defalutPic:require('../static/img/default.jpg'),
     logState:0,
     userinfo :{
       id:'',

@@ -46,6 +46,9 @@ export default {
     },
     data(){
         return{
+            goodAct:require('../../../static/img/good.png'), 
+            goodUnAct:require('../../../static/img/good2.png'), 
+            defaultPic:require('../../../static/img/default.jpg'), 
             goodPic:'',
             isGood:'',
         }
@@ -53,9 +56,9 @@ export default {
     watch:{
         isGood(val){
             if(val === 0){
-                this.goodPic = '../../../static/img/good2.png';
+                this.goodPic = this.goodUnAct;
             } else {
-                this.goodPic = '../../../static/img/good.png';
+                this.goodPic = this.goodAct;
 
             }
 
@@ -151,7 +154,7 @@ export default {
         },
         pic(){
             if(this.info.userinfo.headPic === null){
-                return '../../../static/img/default.jpg';
+                return this.defaultPic;
             } else {
                 return 'http://' + this.info.userinfo.headPic;
             }

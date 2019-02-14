@@ -1,6 +1,6 @@
 <template>
 <div>
-    <input id="updataPic" accept=".jpg,.png" @change="updataPic" type="file">
+    <input id="updataPic" accept="image/*" @change="updataPic" type="file">
     <router-link to="/"><img src="../../../static/img/back_bl.png"></router-link>
     <div class="selfTop">
         <div class="show"> <img @load="configPic" @click="getpic" id="myimg"  :src="userpic"></div>
