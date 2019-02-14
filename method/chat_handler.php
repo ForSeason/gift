@@ -12,6 +12,7 @@
             $this->user = $user;
             $this->rid  = $rid;
         }
+   
         #   $type:0=>chatroom, 1=>losts, 2=>founds
         public function new_room($type, $roomname, $participants) {
             $table  = 'rooms';
@@ -73,14 +74,22 @@
             if ($stmt->rowCount() == 1) {
                 $room = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($room['type'] == 0) {
-                    $table   = 'members';
+                    $table   = 'members'; //check if i'm in this room
                     $params2 = array('id', 'rid');
                     $values2 = array($this->user->info['id'], $this->rid);
-                    if ($this->link->select($table, null, $params2, $params2)->rowCount() != 0) {
-                        $table   = 'chats';
-                        $params2 = array('rid');
-                        $values2 = array($this->rid);
-                        return json_encode($this->link->select($table, $params1, $params2, $values2)->fetchAll(PDO::FETCH_ASSOC));
+                    if ($this->link->select($table, null, $params2, $values2)->rowCount() != 0) {
+                        $table    = 'members';
+                        $params1  = array('id');
+                        $params2  = array('rid');
+                        $values2  = array($this->rid);
+                        $members  = $this->link->select($table, $params1, $params2, $values2)->fetchAll(PDO::FETCH_ASSOC);
+                        $table    = 'chats';
+                        $params1 = array('id', 'content', 'createTime');
+                        $chats    = $this->link->select($table, $params1, $params2, $values2)->fetchAll(PDO::FETCH_ASSOC);
+                        $arr_res  = array();
+                        $arr_res['members'] = $members;
+                        $arr_res['chats']   = $chats;
+                        return json_encode($arr_res);
                     } else {
                         return 'permission denied.';
                     }
