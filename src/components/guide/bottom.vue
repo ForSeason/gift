@@ -8,6 +8,10 @@
         <img src="../../../static/img/add.png">
         <label>发布信息</label>
     </div>
+    <div @click="$router.push('/chatList')" class="guideItem">
+        <img src="../../../static/img/chat.png">
+        <label>聊天列表</label>
+    </div>
     <div @click="$router.push('/self')" class="guideItem">
         <img src="../../../static/img/user.png">
         <label>个人中心</label>
@@ -44,20 +48,20 @@ export default {
     justify-content:space-between;
     bottom:0;
     width: 100vw;
-    height: 19vw;
+    height: 15vw;
     background-color: white;
 }
 .guideItem img{
     position: relative;
     top:2vw;
-    height: 10vw;
-    width: 10vw;
+    height: 7vw;
+    width: 7vw;
 }
 .guideItem label{
     display: block;
     text-align: center;
     font-size: 4vw;
-    margin-top:2vw;
+    margin-top:1vw;
     width:100%;
 }
 .clicked{

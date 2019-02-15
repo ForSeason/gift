@@ -19,7 +19,7 @@
         <div class='detailBottom' >
             <div class="subDetailBottom" v-show="isBottom">
                 <div class="commentBox">
-                    <button @click="isBottom = false">
+                    <button @click="readyToWrite">
                         <img src = "../../../static/img/pen.png">
                         <label>写评论...</label>
                     </button>
@@ -105,6 +105,11 @@ export default {
         },
     },
     methods:{
+        readyToWrite(){
+            this.isBottom = false;
+            setTimeout(() => {document.getElementById('comment').focus();}, 10);
+
+        },
         closeWrite(){
             this.to = null;
             this.toFloor = null;

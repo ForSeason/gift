@@ -80,7 +80,122 @@ export default {
 
         }
     },
+    computed:{
+        listLoad(){
+            return this.List.length;
+        },
+        foundListLoad(){
+            return this.foundList.length;
+        },
+        lostListLoad(){
+            return this.lostList.length;
+        }
+    },
     methods:{
+        ishave(list,item){
+            var have = false;
+            for(var i = 0;i <list.length;i++){
+                if(Number(list[i].eid) === item){
+                    have = true;
+                    break;
+                }
+            }
+            return have;
+
+        },
+        refresh(){
+            var _this = this;
+            var data = '';
+            if(this.selected === '1'){
+                data = qs.stringify({
+                    start:0,
+                    step:5,
+                })
+            } else {
+                data = qs.stringify({
+                    start:0,
+                    step:5,
+                    type:this.selected === '2'?2:1
+                })
+            };
+            this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_list.php',data)
+            .then( res => {
+                var add =[];
+                for(var i = 0;i<res.data.length;i++){
+                    if(this.selected === '1'){
+                        if(!this.ishave(this.List,res.data[i])){
+                            add.push(res.data[i]);
+                        }
+                    } else if(this.selected === '2'){
+                        if(!this.ishave(this.foundList,res.data[i])){
+                            add.push(res.data[i]);
+                        }
+                    } else if(this.selected === '3'){
+                        if(!this.ishave(this.lostList,res.data[i])){
+                            add.push(res.data[i]);
+                        }
+                    }
+                }
+                if(add.length === 0){
+                    Toast({
+                        message:"已经是最新了",
+                        position:'bottom',
+                        duration:'1000',
+                    });
+                }
+                for(var i = 0;i<add.length;i++){
+                    this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
+                    qs.stringify({
+                        eid:add[i]
+                    }))
+                    .then (re => {
+                        this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+                        qs.stringify({
+                            id:re.data.id
+                        }))
+                        .then(response => {
+                            var listItem = {};
+                            listItem.userinfo = response.data;
+                            listItem.time = re.data.createTime*1000;
+                            listItem.eid = re.data.eid;
+                            listItem.content = re.data.content;
+                            listItem.picList = re.data.pics;
+                            listItem.goodNumber = re.data.goods;
+                            listItem.skimNumber = re.data.clicks;
+                            listItem.commentNumber = re.data.chats;
+                            listItem.rid = re.data.rid;
+                            listItem.type = re.data.type;
+                            if(this.selected === '1'){
+                                _this.List.push(listItem);
+                                _this.List.sort(this.listSort);
+                            } else if(this.selected === '3'){
+                                _this.lostList.push(listItem);
+                                _this.lostList.sort(this.listSort);
+                            } else if(this.selected === '2' ){
+                                _this.foundList.push(listItem);
+                                _this.foundList.sort(this.listSort);
+                            }
+                        })
+
+                    })
+                }
+
+            })
+
+
+        },
+        getMore(){
+            if(!this.listLoad || !this.lostListLoad ||!this.foundListLoad){
+                return;
+            }
+            if(this.selected === '1'){
+                this.getList(this.listLoad,0);
+            } else if (this.selected === '2'){
+                this.getList(this.foundListLoad,2);
+            } else if(this.selected === '3'){
+                this.getList(this.lostListLoad,1);
+            }
+        },
         overLoad(type){
             if(type === 1){
                 this.$refs.loadmore.onTopLoaded();
@@ -91,9 +206,11 @@ export default {
             
         },
         loadTop(){
+            this.refresh();
             setTimeout(() =>{this.overLoad(1)},500);
         },
         loadBottom(){
+            this.getMore();
             setTimeout(() =>{this.overLoad(2)},500);
         },
         listSort(itemOne,itemTwo){
@@ -121,6 +238,15 @@ export default {
             }
             this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_list.php',data)
             .then(res => {
+                if(res.data.length === 0){
+                    Toast({
+                        message:"已经加载完了",
+                        position:'bottom',
+                        duration:'1000',
+                    });
+                    return;
+                    
+                }
                 for(var i = 0,j = 0;i<res.data.length;i++){
                     this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
                     qs.stringify({

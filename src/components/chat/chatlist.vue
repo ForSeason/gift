@@ -1,0 +1,44 @@
+<template>
+<div calss="chatList">
+    <div class="chatListTop">
+        <mt-header title="聊天列表">
+        <router-link to="/" slot="left">
+            <mt-button icon="back">返回</mt-button>
+        </router-link>
+        </mt-header>
+    </div>
+    <div class="chatListMid">
+        <chatlistitem v-for = "(item,index) in this.list" :key = "index" :info = "item"></chatlistitem>
+    </div>
+
+</div>
+
+
+    
+</template>
+<script>
+import { Header } from 'mint-ui';
+import chatlistitem from './chatlistitem.vue'
+export default {
+    data() {
+        return {
+            list:[],
+        }
+    },
+    components:{
+        chatlistitem,
+    },
+    mounted(){
+        this.$axios.post('http://scut18pie1.top/test/gift/user/get_room_list.php')
+        .then (res => {
+            this.list = res.data;
+        })
+    }
+    
+}
+</script>
+<style>
+
+</style>
+
+

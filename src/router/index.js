@@ -8,6 +8,8 @@ import detail from '@/components/self/detail.vue'
 import assign from '@/components/assign/assign.vue'
 import result from '@/components/firstpage/result.vue'
 import chat from '@/components/chat/chat.vue'
+import chatList from '@/components/chat/chatlist.vue'
+
 Vue.use(Router)
 
 
@@ -61,6 +63,14 @@ export default new Router({
       path: '/chat',
       name: 'chat',
       component: chat,
+      meta: {
+        requireLogin: true,
+      },
+    },
+    {
+      path: '/chatList',
+      name: 'chatList',
+      component: chatList,
       meta: {
         requireLogin: true,
       },
