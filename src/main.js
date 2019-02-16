@@ -90,7 +90,12 @@ var app =new Vue({
 })
 router.beforeEach((to, from, next) => {
   if(app.$store.state.logState === 0 && to.meta.requireLogin){
-    router.push("/log");
+    router.push({
+      path:'/log',
+      query:{
+        to:to
+      }
+    });
   } else {
     next();
   }

@@ -13,13 +13,12 @@
 <script>
 
 export default {
-    props:["loginShow"],
+    props:["loginShow",'to'],
     data(){
         return {
             userid:'',
             userpassword:'',
             isLoginFail:-1,
-            
         }
     },
     computed:{
@@ -31,6 +30,14 @@ export default {
         }
     },
     methods:{
+        keep(){
+            var now = new Date();
+            now.setTime(now.getTime() + 2*24*60*60*1000);
+            var that = now.toGMTString();
+            document.cookie = 'name' + "=" + this.userid + ";expires=" + that;
+            document.cookie = 'password' + '=' + this.userpassword + ";expires=" + that;
+            console.log(document.cookie)
+        },
         getUserInfo(){
             this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
             .then(res => {
@@ -58,9 +65,16 @@ export default {
                 this.$store.commit('setAddress',userinfo.address);
             });
             this.$store.commit('setLogState',1);
-            this.$router.push('/');
+            if(this.to !== ''){
+                this.$router.push(this.to);
+            } else {
+                this.$router.push('/');
+
+            }
+            
         },
         login(){
+            this.keep();
              if(!/^[-\w_\u4e00-\u9fa5]+$/.test(this.userid)){
                 this.isLoginFail = 2;
                 return;
@@ -91,7 +105,6 @@ export default {
                             duration:'1000',
                         });
                         this.getUserInfo();
-
                 }
             })
         }

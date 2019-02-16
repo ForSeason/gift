@@ -1,5 +1,6 @@
 <template>
 <div>
+    <button @click="out" class = "out">退出登录</button>
     <input id="updataPic" accept="image/*" @change="updataPic" type="file">
     <router-link to="/"><img src="../../../static/img/back_bl.png"></router-link>
     <div class="selfTop">
@@ -47,6 +48,16 @@ export default {
         }
     },
     methods:{
+        out(){
+            var now = new Date();
+            this.$store.commit('setLogState',0);
+            now.setTime(now.getTime()-100);
+            var that = now.toGMTString();
+            document.cookie = 'name=11111111'+";expires=" + that;
+            document.cookie = 'password=11111111'+";expires=" + that;
+            this.$router.push('/log');
+
+        },
         getUserInfo(){
             this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
             .then(res => {
@@ -229,6 +240,17 @@ export default {
 }
 </script>
 <style>
+.out{
+    position:absolute;
+    right:3vw;
+    top:3vw;
+    color:white;
+    background-color: red;
+    padding:1vw 4vw;
+    border-radius: 3vw;
+    border:none;
+    outline: none;
+}
 #updataPic{
     visibility: hidden;
     position:absolute;

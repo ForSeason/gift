@@ -8,6 +8,7 @@
         </mt-header>
     </div>
     <div class="chatListMid">
+        <label class="lab" v-show="this.list.length === 0">你没有任何聊天</label>
         <chatlistitem v-for = "(item,index) in this.list" :key = "index" :info = "item"></chatlistitem>
     </div>
 
@@ -38,6 +39,12 @@ export default {
 }
 </script>
 <style>
+.lab{
+    display: block;
+    text-align: center;
+    color:#CCC;
+    font-size: 5vw;
+}
 
 </style>
 

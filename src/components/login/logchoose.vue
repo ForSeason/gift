@@ -5,12 +5,15 @@
         <div id="chooseBox">
             <a @click="loginShow = true" >登录</a>
             <router-link to="/register">注册</router-link>
+            <div @click = 'tourLogin' class="tour"><button>游客登录</button></div>
+            
+            
         </div>
-        <label @click="$router.back(-1);">暂不登录</label>
+        <label @click="$router.push('/');">暂不登录</label>
         
     </div>
     <transition name="fade">
-        <login @close="loginShow = false" v-show="loginShow"></login>
+        <login :to="this.to" ref="login" @close="loginShow = false" v-show="loginShow"></login>
     </transition>
     
     
@@ -27,13 +30,59 @@ export default {
     data(){
         return {
             loginShow:false,
+            to:'',
 
         }
-    }
+    },
+    methods: {
+        getCookie(){
+            var cookie = document.cookie;
+            var nameRule = /name=(.*?)(;|$)/;
+            var passwordRule = /password=(.*?)(;|$)/;
+            if(nameRule.test(cookie) && passwordRule.test(cookie)){
+                this.$refs.login.userid = nameRule.exec(document.cookie)[1]
+                this.$refs.login.userpassword = passwordRule.exec(document.cookie)[1]
+                this.$refs.login.login();
+            } else {
+                console.log("no");
+            }
+
+
+        },
+        tourLogin(){
+            this.$refs.login.userid = '11111111';
+            this.$refs.login.userpassword = 'aaa111';
+            this.$refs.login.login();
+
+        }
+        
+    },
+    mounted(){
+        console.log('to',this.$route.query.to.path);
+        if(this.$route.query.to){
+            this.to = this.$route.query.to.path;
+        }
+        this.getCookie();
+
+    },
     
 }
 </script>
 <style>
+.tour {
+    position: relative;
+}
+.tour button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #CCC;
+    border:none;
+    outline: none;
+    font-size: 4vw;
+    border-radius: 1vw;
+    padding:1vw 2vw;
+}
 #logChoose{
     position: relative;
     margin: 0;
