@@ -2,17 +2,44 @@
 .button {
   height: 50pt;
   width: 180pt;
+  font-size: 13pt;
 }
 .sousuo{
   height: 50pt;
   width: 100pt;
+  font-size: 13pt;
 }
 .sousuobutton {
   height: 50pt;
   width: 90pt;
+  background-color: #0099ff;
 }
 .fenjie {
   height: 40pt;
   width: 360pt;
   background-color: gray;
+}
+.info {
+  border-style: solid;
+  width: 280pt;
+  height: 75pt;
+  border-width: thin;
+}
+.content {
+  border-style: solid;
+  width: 360pt;
+  height: 105pt;
+  border-width: thin;
+}
+.good {
+  border-style: solid;
+  width: 360pt;
+  height: 50pt;
+  border-width: thin;
+}
+.dibu {
+  border-style: solid;
+  border-width: thin;
+  height: 75pt;
+  width: 360pt;
 }

@@ -1,0 +1,22 @@
+<!--pages/detail/detail.wxml-->
+<view class='container'>
+  <view class='top'>详情</view>
+  <view class='name'>
+    <image style='width:50pt;height:50pt;' src='http://{{userinfo.headPic}}'></image>
+    <text style='font-size:18pt;'>名字：{{userinfo.nickname}}</text>
+    <text style='font-size:18pt;'>时间：{{eventinfo.createTime}}</text>
+  </view>
+  <view class='content'>
+      <text style='font-size:13pt'>{{eventinfo.content}}</text>
+  </view>
+  <view class='center'>讨论区</view>
+  <view class='comment'>
+  
+  </view>
+  <view class='bottom'>
+    <text style='font-size=18pt'>首页</text>
+    <text style='font-size=18pt'>评论</text>
+    <text style='font-size=18pt'>点赞</text>
+    <text style='font-size=18pt'>分享</text>
+  </view>
+</view>

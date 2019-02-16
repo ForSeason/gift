@@ -1,13 +1,7 @@
-<!--pages/home/home.wxml-->
+<!--pages/xunwuqishiinfo/xunwuqishiinfo.wxml-->
 <view class='container'>
-  <button class='button' bindtap='xunwuqishi'>寻物启事</button>
-  <button class='button'bindtap='shiwuzhaoling'>失物招领</button>
-  <form bindsubmit='formsubmit'>
-    <input name='content' class='sousuo' placeholder='请输入关键词'></input>
-    <button form-type='submit' class='sousuobutton'>搜索</button>
-  </form>
-  <view bindtap='gotodetail'>
-    <view class='fenjie'></view>
+  <view class='dingbulan'>寻物启事-信息列表</view>
+  <view>
     <image style='width:80pt;height:70pt;' src='http://{{userinfo.headPic}}'></image>
     <view class='info'>
       <text style='font-size:18pt;'>名字：{{userinfo.nickname}}</text>
@@ -22,10 +16,5 @@
       <text style='font-size:13pt'>点赞量：{{eventinfo.goods}}</text>
       <text style='font-size:13pt'>转发</text>
     </view>
-  </view>
-  <view class='dibu'>
-    <text style='font-size:24pt;color:#0099ff'>失物招领</text>
-    <text style='font-size:24pt;color:#0099ff' bindtap='fabuinfo'>发布信息</text>
-    <text style='font-size:24pt;color:#0099ff' bindtap='selfcenter'>个人中心</text>
   </view>
 </view>

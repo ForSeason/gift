@@ -27,7 +27,7 @@
     </view>
     <view class='section_gap'>
       <view class='section_title'>地址（选填）</view>
-      <input name='adress' class='neirong'></input>
+      <input name='adress' class='neirong' placeholder='XX宿舍楼XXX'></input>
     </view>
     <button form-type='submit' class='submit'>提交</button>
   </form>

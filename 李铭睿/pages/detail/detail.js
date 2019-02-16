@@ -1,66 +1,44 @@
-// pages/index1/index1.js
+// pages/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    hidden:false,
-    login:'',
+    eid:'',
+    eventinfo:'',
+    userinfo:'',
+    comment:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  zhuce1:function(){
-    wx.navigateTo({
-      url: '/pages/zhuce/zhuce',
-    })
-  },
-
-  login1:function(){
+    var that=this
     this.setData({
-      hidden:true
+      eid: options.eid,
+      eventinfo: JSON.parse(options.eventinfo),
+      userinfo: JSON.parse(options.userinfo)
     })
-  },
-
-  formsubmit:function(e){
-    var that = this
     wx.request({
-      url: 'http://scut18pie1.top/test/gift/user/login.php',
+      url: 'http://scut18pie1.top/test/gift/user/pull_chats.php',
       method: 'POST',
       data: {
-        id: e.detail.value.id,
-        password:e.detail.value.password
+        rid: that.data.eventinfo.rid
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': wx.getStorageSync("sessionid")
       },
       success: function (res) {
-        console.log(res)
         that.setData({
-          login: res.data,
+          comment: res.data
         })
-        if (that.data.login == 1) {
-          wx.redirectTo({
-            url: '/pages/home/home',
-          })
-        }
-        else {
-          wx.showToast({
-            title: '账号密码错误',
-          })
-          setTimeout(function () {
-            wx.hideToast()
-          }, 2000)
-        }
       }
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

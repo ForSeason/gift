@@ -1,11 +1,16 @@
 {
   "pages":[
-    "pages/home/home",
     "pages/index1/index1",
+    "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
     "pages/zhuce/zhuce",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/fabuinfo/fabuinfo",
+    "pages/selfcenter/selfcenter",
+    "pages/xunwuqishiinfo/xunwuqishiinfo",
+    "pages/shiwuzhaolinginfo/shiwuzhaolinginfo",
+    "pages/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,0 +1,38 @@
+/* pages/detail/detail.wxss */
+.top {
+  height: 25pt;
+  width: 360pt;
+  background-color: #0066ff;
+  color: white;
+  font-size: 18pt;
+}
+.name {
+  border-style: solid;
+  width: 360pt;
+  height: 80pt;
+  border-width: thin;
+}
+.content {
+  border-style: solid;
+  width: 360pt;
+  height: 105pt;
+  border-width: thin;
+}
+.center {
+  border-style: solid;
+  width: 360pt;
+  height: 30pt;
+  border-width: thin;
+  font-size: 24pt;
+}
+.comment {
+  border-style: solid;
+  width: 360pt;
+  border-width: thin;
+}
+.bottom {
+  border-style: solid;
+  width: 360pt;
+  height: 60pt;
+  border-width: thin;
+}
