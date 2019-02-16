@@ -317,13 +317,13 @@ export default {
 }
 .firstMid{
     padding:0 3vw;
-    height:calc(100vh - 45vw);
+    height:calc(100vh - 40vw);
     overflow:scroll;
 }
 .firstBottom{
     position:absolute;
     top:calc(100% - 20vw);
-    height:20vw;
+    height:15vw;
      width: 100%;
 
 }

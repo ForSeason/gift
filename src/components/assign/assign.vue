@@ -36,6 +36,7 @@
 import { Header } from 'mint-ui';
 import { Field } from 'mint-ui';
 import { Radio } from 'mint-ui';
+import { Indicator } from 'mint-ui';
 
 
 export default {
@@ -50,7 +51,17 @@ export default {
     },
     methods:{
         submit(){
+
             var myurl = '';
+            if(this.content === ''){
+                    Toast({
+                    message:"内容不能为空",
+                    position:'bottom',
+                    duration:'1000',
+                    });
+
+            }
+            Indicator.open('发布中');
             if(this.fineType === '失物招领'){
                 myurl = 'http://scut18pie1.top/test/gift/user/create_a_found.php';
             } else {
@@ -75,6 +86,7 @@ export default {
                 headers:{'Content-Type':'multipart/form-data'},
             })
             .then(res => {
+                Indicator.close();
                 if(res.data !== 0){
                     Toast({
                     message:"发布成功",

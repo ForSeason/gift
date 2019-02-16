@@ -32,7 +32,7 @@ export default {
     display: inline-block;
     width:32vw;
     text-align: center;
-    height: 19vw;
+    height: 15vw;
 }
 .bottomGuide div:last-child{
     

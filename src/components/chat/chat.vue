@@ -1,6 +1,6 @@
 <template>
 <div class="chat">
-    <input id="myPic" accept=".jpg,.png" @change="sendPic" style="position:absolute;visibility: hidden;" type="file">
+    <input id="myPic" accept="image/*" @change="sendPic" style="position:absolute;visibility: hidden;" type="file">
     <div class = "chatTop">
             <mt-header fixed :title="info.thatName">
                     <mt-button @click="$router.back(-1)" slot="left" icon="back"></mt-button>
@@ -57,7 +57,7 @@ export default {
     methods: {
         toBottom(){
             this.$nextTick(() => {
-                document.documentElement.scrollTop = document.getElementById('mid').scrollHeight;
+                document.getElementById('mid').scrollTop = document.getElementById('mid').scrollHeight;
 
             })
             
@@ -251,6 +251,7 @@ export default {
 }
 .chatMid{
     margin-bottom:13vw;
+    height: calc(100vh - 30vw);
     overflow: scroll;
 }
 .chatPlace{
