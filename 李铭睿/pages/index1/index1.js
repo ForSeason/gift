@@ -38,10 +38,10 @@ Page({
         password:e.detail.value.password
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
       },
       success: function (res) {
-        console.log(res)
+        wx.setStorageSync("sessionid", res.cookies[1].value)
         that.setData({
           login: res.data,
         })

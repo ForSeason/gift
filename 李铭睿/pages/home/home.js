@@ -140,8 +140,26 @@ Page({
   },
 
   gotodetail:function(){
-    wx.navigateTo({
-      url: '/pages/detail/detail?eventinfo=' + JSON.stringify(this.data.eventinfo) + '&eid=' + this.data.eid + '&userinfo=' + JSON.stringify(this.data.userinfo),
+    var that=this
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/click.php',
+      method: 'POST',
+      data: {
+        eid: that.data.eid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+      },
+      success: function (res) {
+        if(res.data==1){
+          wx.navigateTo({
+            url: '/pages/detail/detail?eventinfo=' + JSON.stringify(that.data.eventinfo) + '&eid=' + that.data.eid + '&userinfo=' + JSON.stringify(that.data.userinfo)})
+        }
+        else{
+          console.log(res.data)
+        }
+      }
     })
   },
   /**
@@ -177,19 +195,9 @@ Page({
    */
   onPullDownRefresh: function () {
 
-  },
+  }
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

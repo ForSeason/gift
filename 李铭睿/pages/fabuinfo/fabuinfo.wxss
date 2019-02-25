@@ -1,1 +1,12 @@
 /* pages/fabuinfo/fabuinfo.wxss */
+.button {
+  height: 130pt;
+  width: 360pt;
+  font-size: 28pt;
+}
+.dibu {
+  border-style: solid;
+  border-width: thin;
+  height: 75pt;
+  width: 360pt;
+}

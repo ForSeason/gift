@@ -1,0 +1,21 @@
+<!--pages/shiwuzhaoling/shiwuzhaoling.wxml-->
+<view class='container'>
+  <view class='dingbulan'>失物招领-发布</view>
+  <form bindsubmit='formsubmit'>
+    <view class='biankuang'>
+      <input placeholder='请选择发布的内容' placeholder-style='font-size:16pt' name='content'></input>
+    </view>
+    <view class='biankuang' bindtap='addpicture'>
+      <image></image>
+    </view>
+    <view class='info'>
+      <view style='font-size:16pt'>地址：</view>
+      <input style='font-size:16pt' name='address'></input>
+    </view>
+    <view class='info'>
+      <view style='font-size:16pt'>电话号码：</view>
+      <input style='font-size:16pt' name='phone'></input>
+    </view>
+    <button class='button' form-type='submit'>提交</button>
+  </form>
+</view>

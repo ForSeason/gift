@@ -14,9 +14,9 @@
   
   </view>
   <view class='bottom'>
-    <text style='font-size=18pt'>首页</text>
-    <text style='font-size=18pt'>评论</text>
-    <text style='font-size=18pt'>点赞</text>
-    <text style='font-size=18pt'>分享</text>
+    <text style='font-size=18pt' bindtap='tohome'>首页</text>
+    <text style='font-size=18pt' bindtap='comment'>评论</text>
+    <text style='font-size=18pt' bindtap='goods'>点赞</text>
+    <text style='font-size=18pt' bindtap='onShareAppMessage'>分享</text>
   </view>
 </view>

@@ -1,1 +1,24 @@
 /* pages/selfcenter/selfcenter.wxss */
+.zhucekuang {
+  height: 50pt;
+  width: 360pt;
+  background-color: #0066ff;
+  color: white;
+}
+.section_title {
+  color: white;
+  height: 30pt;
+  width: 360pt;
+  background-color: #0099ff;
+  font-size: 18pt;
+}
+.submit {
+  height: 50pt;
+  width: 280pt;
+}
+.neirong {
+  height: 25pt;
+  width: 360pt;
+  min-height: 25pt;
+  font-size: 18pt;
+}

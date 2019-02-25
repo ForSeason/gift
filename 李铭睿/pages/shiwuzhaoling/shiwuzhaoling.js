@@ -1,56 +1,57 @@
-// pages/detail/detail.js
+// pages/shiwuzhaoling/shiwuzhaoling.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    eid:'',
-    eventinfo:'',
-    userinfo:'',
-    comment:''
+    tempFilePaths: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this
-    this.setData({
-      eid: options.eid,
-      eventinfo: JSON.parse(options.eventinfo),
-      userinfo: JSON.parse(options.userinfo)
-    })
-    wx.request({
-      url: 'http://scut18pie1.top/test/gift/user/pull_chats.php',
-      method: 'POST',
-      data: {
-        rid: that.data.eventinfo.rid
+
+  },
+
+  addpicture: function () {
+    var that = this
+    wx.chooseImage({
+      success: function (res) {
+        that.setData({
+          tempFilePaths: res.tempFilePaths
+        })
       },
+    })
+  },
+
+  formsubmit: function (e) {
+    var that = this
+    wx.uploadFile({
+      url: 'http://scut18pie1.top/test/gift/user/create_a_found.php',
+      filePath: that.data.tempFilePaths[0],
+      name: 'picuture',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
       },
+      formData: {
+        'content': e.detail.value.content,
+        'phone': e.detail.value.phone,
+        'address': e.detail.value.address
+      },
       success: function (res) {
-        that.setData({
-          comment: res.data
-        })
+        if (res.data == 0) {
+          console.log(res)
+        }
+        else {
+          wx.redirectTo({
+            url: '/pages/home/home',
+          })
+        }
       }
     })
-  },
-
-  tohome:function(){
-    wx.redirectTo({
-      url: '/pages/home/home',
-    })
-  },
-
-  onShareAppMessage:function(){
-    return{
-      title:'',
-      desc:'',
-      path: '/pages/detail/detail?eventinfo=' + JSON.stringify(this.data.eventinfo) + '&eid=' + this.data.eid + '&userinfo=' + JSON.stringify(this.data.userinfo)
-    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

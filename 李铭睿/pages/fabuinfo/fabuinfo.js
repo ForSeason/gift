@@ -18,6 +18,30 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+
+  shiwuzhaoling: function () {
+    wx.navigateTo({
+      url: '/pages/home/home',
+    })
+  },
+
+  selfcenter: function () {
+    wx.navigateTo({
+      url: '/pages/selfcenter/selfcenter',
+    })
+  },
+
+  gotoxunwu: function () {
+    wx.navigateTo({
+      url: '/pages/xunwuqishi/xunwuqishi',
+    })
+  },
+
+  gotoshiwu: function () {
+    wx.navigateTo({
+      url: '/pages/shiwuzhaoling/shiwuzhaoling',
+    })
+  },
   onReady: function () {
 
   },

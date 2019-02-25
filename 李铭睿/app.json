@@ -10,7 +10,9 @@
     "pages/selfcenter/selfcenter",
     "pages/xunwuqishiinfo/xunwuqishiinfo",
     "pages/shiwuzhaolinginfo/shiwuzhaolinginfo",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/xunwuqishi/xunwuqishi",
+    "pages/shiwuzhaoling/shiwuzhaoling"
   ],
   "window":{
     "backgroundTextStyle":"light",
