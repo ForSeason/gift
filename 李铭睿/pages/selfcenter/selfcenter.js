@@ -5,16 +5,80 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    headPic:'',
+    nickname:'',
+    tempFilePaths:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/get_my_info.php',
+      method: 'POST',
+      data: {
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          headPic:res.data.info.headPic,
+          nickname:res.data.info.nickname
+        })
+      }
+    })
   },
 
+  changehead:function(){
+    var that = this
+    wx.chooseImage({
+      success: function (res) {
+        wx.uploadFile({
+          url: 'http://scut18pie1.top/test/gift/user/update_headPic.php',
+          filePath: res.tempFilePaths[0],
+          name: 'headPic',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+          },
+          success: function (res) {
+          }
+        })
+      },
+    })
+  },
+
+  formsubmit: function (e) {
+    var that = this
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/update_my_info.php',
+      method: 'POST',
+      data: {
+        params: ['nickname', 'phone', 'address','selfIntro'],
+        values: [e.detail.value.nickname, e.detail.value.phone, e.detail.value.address, e.detail.value.selfIntro]
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+      },
+      success: function (res) {
+        if (res.data == 0) {
+          console.log(res)
+        }
+        else {
+          wx.redirectTo({
+            url: '/pages/home/home',
+          })
+        }
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

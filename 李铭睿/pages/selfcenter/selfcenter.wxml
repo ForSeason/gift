@@ -1,36 +1,24 @@
 <!--pages/selfcenter/selfcenter.wxml-->
 <view class='container'>
-  <image src='http://{{userinfo.headPic}}' style='width:85pt;height:85pt;' bindtap='changehead'></image>
-  <text style='font-size:22pt'>{{}}</text>
+  <image src='http://{{headPic}}' style='width:85pt;height:85pt;' bindtap='changehead'></image>
+  <text style='font-size:22pt'>{{nickname}}</text>
   <form bindsubmit='formsubmit'>
-    <view class='zhucekuang'>注册</view>
     <view class='section_gap'>
-      <view class='section_title'>姓名（必填）</view>
+      <view class='section_title'>姓名</view>
       <input name='nickname' class='neirong'></input>
     </view>
     <view class='section_gap'>
-      <view class='section_title'>手机号（必填）</view>
+      <view class='section_title'>手机号</view>
       <input name='phone' class='neirong'></input>
     </view>
     <view class='section_gap'>
-      <view class='section_title'>性别（必填）</view>
-      <radio-group name="sex" class='neirong'>
-        <label class='neirong'><radio value="0" />男</label>
-        <label class='neirong'><radio value="1" />女</label>
-      </radio-group>
+      <view class='section_title'>地址</view>
+      <input name='address' class='neirong'></input>
     </view>
     <view class='section_gap'>
-      <view class='section_title'>账号（必填）</view>
-      <input name='id' class='neirong'></input>
+      <view class='section_title'>详细介绍下自己</view>
+      <input name='selfIntro' class='neirong2'></input>
     </view>
-    <view class='section_gap'>
-      <view class='section_title'>密码（必填）</view>
-      <input name='password' class='neirong'></input>
-    </view>
-    <view class='section_gap'>
-      <view class='section_title'>地址（选填）</view>
-      <input name='adress' class='neirong' placeholder='XX宿舍楼XXX'></input>
-    </view>
-    <button form-type='submit' class='submit'>提交</button>
+    <button form-type='submit' class='submit'>提交保存</button>
   </form>
 </view>
