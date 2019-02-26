@@ -2,8 +2,6 @@
   "pages":[
     "pages/index1/index1",
     "pages/home/home",
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/zhuce/zhuce",
     "pages/list/list",
     "pages/fabuinfo/fabuinfo",
@@ -17,7 +15,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "失物招领",
     "navigationBarTextStyle":"black"
   }
 }

@@ -1,32 +1,54 @@
 /* pages/index1/index1.wxss */
 .title {
-  font-size: 32pt;
+  font-size: 64rpx;
+  padding-bottom: 50rpx;
 }
-.login {
-  font-size: 20pt;
-  height: 40pt;
-  width: 140pt;
+.button1 {
+  display: flex;
+  font-size: 40rpx;
+  height: 80rpx;
+  width: 280rpx;
   background-color: #0099ff;
-}
-.zhuce {
-  font-size: 20pt;
-  height: 40pt;
-  width: 140pt;
+  color: white;
+  align-items: center;
+  justify-content: center;
 }
 .loginborder {
   border-style: solid;
   border-width: thin;
-  height: 170pt;
-  width: 300pt;
-}
+  height: 340rpx;
+  width: 600rpx;
+  border-color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  }
 .nextlogin {
-  font-size: 20pt;
-  height: 40pt;
-  width: 140pt;
+  font-size: 40rpx;
+  height: 80rpx;
+  width: 280rpx;
+  background-color: #0099ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.zhanghao{
-  font-size: 18pt;
+.text{
+  font-size: 36rpx;
 }
-.mima {
-  font-size: 18pt;
+.input{
+  font-size: 36rpx;
+  border-style: solid;
+  border-color: grey;
+  border-width: thin;
+}
+.container1 {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-bottom: 30rpx;
+} 
+.button{
+  padding-bottom: 50rpx;
 }
