@@ -1,31 +1,36 @@
 <!--pages/home/home.wxml-->
 <view class='container'>
-  <button class='button' bindtap='xunwuqishi'>寻物启事</button>
-  <button class='button'bindtap='shiwuzhaoling'>失物招领</button>
+  <view class='topbutton'>
+    <button class='button' bindtap='xunwuqishi'>寻物启事</button>
+    <button class='button'bindtap='shiwuzhaoling'>失物招领</button>
+  </view>
   <form bindsubmit='formsubmit'>
-    <input name='content' class='sousuo' placeholder='请输入关键词'></input>
-    <button form-type='submit' class='sousuobutton'>搜索</button>
+    <view class='topbutton'>
+      <input name='content' class='sousuo' placeholder='请输入关键词'></input>
+      <button form-type='submit' class='sousuobutton'>搜索</button>
+    </view>
   </form>
   <view bindtap='gotodetail'>
     <view class='fenjie'></view>
-    <image style='width:80pt;height:70pt;' src='http://{{userinfo.headPic}}'></image>
-    <view class='info'>
-      <text style='font-size:18pt;'>名字：{{userinfo.nickname}}</text>
-      <text style='font-size:18pt;'>发布时间：{{eventinfo.createTime}}</text>
+    <view class='topbutton'>
+      <image style='width:160rpx;height:150rpx;' src='http://{{userinfo.headPic}}'></image>
+      <view class='info'>
+        <text style='font-size:36rpx;'>名字：{{userinfo.nickname}}</text>
+        <text style='font-size:36rpx;'>发布时间：{{eventinfo.createTime}}</text>
+      </view>
     </view>
     <view class='content'>
-      <text style='font-size:13pt'>{{eventinfo.content}}</text>
-    </view>
-    <view class='good'>
-      <text style='font-size:13pt'>点击:{{eventinfo.clicks}}</text>
-      <text style='font-size:13pt'>评论量：{{eventinfo.chats}}</text>
-      <text style='font-size:13pt'>点赞量：{{eventinfo.goods}}</text>
-      <text style='font-size:13pt'>转发</text>
+      <text style='font-size:26rpx'>{{eventinfo.content}}</text>
     </view>
   </view>
+  <view class='good'>
+    <text style='font-size:26rpx'>点击:{{eventinfo.clicks}}</text>
+    <text style='font-size:26rpx'>评论量：{{eventinfo.chats}}</text>
+    <text style='font-size:26rpx'>点赞量：{{eventinfo.goods}}</text>
+  </view>
   <view class='dibu'>
-    <text style='font-size:24pt;color:#0099ff'>失物招领</text>
-    <text style='font-size:24pt;color:#0099ff' bindtap='fabuinfo'>发布信息</text>
-    <text style='font-size:24pt;color:#0099ff' bindtap='selfcenter'>个人中心</text>
+    <text style='font-size:48rpx;color:#0099ff'>失物招领</text>
+    <text style='font-size:48rpx;color:#0099ff' bindtap='fabuinfo'>发布信息</text>
+    <text style='font-size:48rpx;color:#0099ff' bindtap='selfcenter'>个人中心</text>
   </view>
 </view>

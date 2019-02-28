@@ -8,7 +8,9 @@ Page({
     eid:'',
     eventinfo:'',
     userinfo:'',
-    comment:''
+    comment:'',
+    color:'black',
+    hidden:true
   },
 
   /**
@@ -37,6 +39,35 @@ Page({
         })
       }
     })
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/check_good_existence.php',
+      method: 'POST',
+      data: {
+        eid: that.data.eventinfo.eid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+      },
+      success: function (res) {
+        if(res.data===1){
+          that.setData({
+            color:'red'
+          })
+        }
+        else{
+          that.setData({
+            color:'black'
+          })
+        }
+      }
+    })
+  },
+
+  commentshow:function(){
+    this.setData({
+      hidden: false
+    })
   },
 
   tohome:function(){
@@ -52,6 +83,59 @@ Page({
       path: '/pages/detail/detail?eventinfo=' + JSON.stringify(this.data.eventinfo) + '&eid=' + this.data.eid + '&userinfo=' + JSON.stringify(this.data.userinfo)
     }
   },
+
+  goods:function(){
+    var that=this
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/good.php',
+      method: 'POST',
+      data: {
+        eid: that.data.eventinfo.eid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+      },
+      success: function (res) {
+        wx.request({
+          url: 'http://scut18pie1.top/test/gift/user/check_good_existence.php',
+          method: 'POST',
+          data: {
+            eid: that.data.eventinfo.eid
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+          },
+          success: function (res) {
+            if (res.data === 1) {
+              that.setData({
+                color: 'red'
+              })
+            }
+            else {
+              that.setData({
+                color: 'black'
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+
+  back:function(){
+    wx.redirectTo({
+      url: '/pages/home/home'
+    })
+  },
+
+  close:function(){
+    this.setData({
+      hidden: true
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

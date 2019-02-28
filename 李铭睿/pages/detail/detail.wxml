@@ -1,22 +1,39 @@
 <!--pages/detail/detail.wxml-->
 <view class='container'>
-  <view class='top'>详情</view>
+  <view class='top' bindtap='back'>←详情</view>
   <view class='name'>
-    <image style='width:50pt;height:50pt;' src='http://{{userinfo.headPic}}'></image>
-    <text style='font-size:18pt;'>名字：{{userinfo.nickname}}</text>
-    <text style='font-size:18pt;'>时间：{{eventinfo.createTime}}</text>
+    <image style='width:100rpx;height:100rpx;' src='http://{{userinfo.headPic}}'></image>
+    <view class='info'>
+      <text style='font-size:36rpx;'>名字：{{userinfo.nickname}}</text>
+      <text style='font-size:36rpx;'>时间：{{eventinfo.createTime}}</text>
+    </view>
   </view>
   <view class='content'>
-      <text style='font-size:13pt'>{{eventinfo.content}}</text>
+      <text style='font-size:26rpx'>{{eventinfo.content}}</text>
   </view>
+  <image style='width:750rpx;height:562rpx' src='http://{{eventinfo.pics[0]}}'></image>
   <view class='center'>讨论区</view>
   <view class='comment'>
-  
+    <text style='font-size:36rpx'>{{comment}}</text>
   </view>
   <view class='bottom'>
-    <text style='font-size=18pt' bindtap='tohome'>首页</text>
-    <text style='font-size=18pt' bindtap='comment'>评论</text>
-    <text style='font-size=18pt' bindtap='goods'>点赞</text>
-    <text style='font-size=18pt' bindtap='onShareAppMessage'>分享</text>
+    <text style='font-size=36rpx' bindtap='tohome'>首页</text>
+    <text style='font-size=36rpx' bindtap='commentshow'>评论</text>
+    <text style='font-size=36rpx;color:{{color}}' bindtap='goods'>点赞</text>
+  </view>
+  <view hidden='{{hidden}}' class='commentkuang'>
+    <view class='commenttop'>
+      <text style='font-size:48rpx'>评论</text>
+      <text style='font-size:48rpx' bindtap='close'>关闭</text>
+    </view>
+    <form bindsubmit='formsubmit'>
+      <view class='commentcenterdad'>
+        <textarea class='commentcenter' value='{{concent}}' bindblur='bindTextAreaBlur' focus='{{focus}}'></textarea>
+      </view>
+      <view class='commentbottom'>
+        <text>请文明发言</text>
+        <button form-type='submit' class='btn'>发送</button>
+      </view>
+    </form>
   </view>
 </view>

@@ -25,7 +25,6 @@ Page({
         'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
       },
       success: function (res) {
-        console.log(res.data)
         that.setData({
           headPic:res.data.info.headPic,
           nickname:res.data.info.nickname
@@ -59,8 +58,14 @@ Page({
       url: 'http://scut18pie1.top/test/gift/user/update_my_info.php',
       method: 'POST',
       data: {
-        params: ['nickname', 'phone', 'address','selfIntro'],
-        values: [e.detail.value.nickname, e.detail.value.phone, e.detail.value.address, e.detail.value.selfIntro]
+        'params[0]': 'nickname',
+        'params[1]': 'phone',
+        'params[2]': 'address',
+        'params[3]': 'selfIntro',
+        'values[0]': e.detail.value.nickname,
+        'values[1]': e.detail.value.phone,
+        'values[2]': e.detail.value.address,
+        'values[3]': e.detail.value.selfIntro
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -75,7 +80,6 @@ Page({
             url: '/pages/home/home',
           })
         }
-        console.log(res)
       }
     })
   },

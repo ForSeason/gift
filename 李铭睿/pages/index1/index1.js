@@ -28,38 +28,57 @@ Page({
     })
   },
 
+  closewindow: function () {
+    this.setData({
+      hidden: false
+    })
+  },
+
   formsubmit:function(e){
     var that = this
-    wx.request({
-      url: 'http://scut18pie1.top/test/gift/user/login.php',
-      method: 'POST',
-      data: {
-        id: e.detail.value.id,
-        password:e.detail.value.password
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      success: function (res) {
-        wx.setStorageSync("sessionid", res.cookies[1].value)
-        that.setData({
-          login: res.data,
-        })
-        if (that.data.login == 1) {
-          wx.redirectTo({
-            url: '/pages/home/home',
+    if (!(/^\w+$/.test(e.detail.value.id))) {
+      wx.showToast({
+
+        title: '帐号使用英文数字下划线',
+
+        duration: 2000,
+
+        icon: 'none'
+
+      })
+    }
+    else{
+      wx.request({
+        url: 'http://scut18pie1.top/test/gift/user/login.php',
+        method: 'POST',
+        data: {
+          id: e.detail.value.id,
+          password: e.detail.value.password
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        success: function (res) {
+          wx.setStorageSync("sessionid", res.cookies[1].value)
+          that.setData({
+            login: res.data,
           })
+          if (that.data.login == 1) {
+            wx.redirectTo({
+              url: '/pages/home/home',
+            })
+          }
+          else {
+            wx.showToast({
+              title: '账号密码错误',
+            })
+            setTimeout(function () {
+              wx.hideToast()
+            }, 2000)
+          }
         }
-        else {
-          wx.showToast({
-            title: '账号密码错误',
-          })
-          setTimeout(function () {
-            wx.hideToast()
-          }, 2000)
-        }
-      }
-    })
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

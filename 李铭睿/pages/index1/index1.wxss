@@ -52,3 +52,8 @@
 .button{
   padding-bottom: 50rpx;
 }
+.close{
+  justify-content: flex-end;
+  display: flex;
+  width: 100%
+}

@@ -7,15 +7,18 @@
   <view class='button'>
   <button class='button1' bindtap='zhuce1' hidden='{{hidden}}'>注册</button>
   </view>
+  <view class='close' hidden='{{!hidden}}'>
+    <text style='width=0rpx' bindtap='closewindow'>关闭</text>
+  </view>
   <view class='loginborder' hidden='{{!hidden}}'>
     <form bindsubmit='formsubmit'>
     <view class='container1'>
       <text class='text'>账号</text>
-      <input name='id' class='input'></input>
+      <input name='id' class='input' maxlength='20'></input>
     </view>
     <view class='container1'>
       <text class='text'>密码</text>
-      <input name='password' class='input'></input>
+      <input name='password' class='input' password='true'></input>
     </view>
     <button class='nextlogin' form-type='submit'>登录</button>
     </form>

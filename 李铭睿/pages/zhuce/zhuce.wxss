@@ -1,24 +1,24 @@
 /* pages/zhuce/zhuce.wxss */
 .zhucekuang {
-  height: 50pt;
-  width: 360pt;
+  height: 100rpx;
+  width: 750rpx;
   background-color: #0066ff;
   color: white;
 }
 .section_title {
   color: white;
-  height: 30pt;
-  width: 360pt;
+  height: 60rpx;
+  width: 750rpx;
   background-color: #0099ff;
-  font-size: 18pt;
+  font-size: 36rpx;
 }
 .submit {
-  height: 50pt;
-  width: 280pt;
+  height: 100rpx;
+  width: 560rpx;
 }
 .neirong {
-  height: 25pt;
-  width: 360pt;
-  min-height: 25pt;
-  font-size: 18pt;
+  height: 50rpx;
+  width: 750rpx;
+  min-height: 50rpx;
+  font-size: 36rpx;
 }

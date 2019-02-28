@@ -1,38 +1,96 @@
 /* pages/detail/detail.wxss */
 .top {
-  height: 25pt;
-  width: 360pt;
+  height: 50rpx;
+  width: 750rpx;
   background-color: #0066ff;
   color: white;
-  font-size: 18pt;
+  font-size: 36rpx;
 }
 .name {
   border-style: solid;
-  width: 360pt;
-  height: 80pt;
+  width: 750rpx;
+  height: 160rpx;
   border-width: thin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .content {
   border-style: solid;
-  width: 360pt;
-  height: 105pt;
+  width: 750rpx;
   border-width: thin;
 }
 .center {
   border-style: solid;
-  width: 360pt;
-  height: 30pt;
+  width: 750rpx;
+  height: 60rpx;
   border-width: thin;
-  font-size: 24pt;
+  font-size: 48rpx;
 }
 .comment {
   border-style: solid;
-  width: 360pt;
+  width: 750rpx;
   border-width: thin;
 }
 .bottom {
   border-style: solid;
-  width: 360pt;
-  height: 60pt;
+  width: 750rpx;
+  height: 120rpx;
   border-width: thin;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1
+} 
+.commentkuang{
+  width: 680rpx;
+  height: 400rpx;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-width: thin;
+  background-color: white;
+  top: 300rpx
+}
+.commenttop{
+  display: flex;
+  justify-content: space-between
+}
+.commentcenter{
+  border-style: solid;
+  border-width: thin;
+  border-color: gainsboro;
+  height: 200rpx;
+  width: 600rpx
+}
+.commentcenterdad{
+  display: flex;
+  justify-content: center
+}
+.btn {
+  height: 100rpx;
+  width: 350rpx;
+  background-color: #0099ff;
+  color: white
+}
+.commentbottom{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 600rpx;
+  min-width: 600rpx
 }

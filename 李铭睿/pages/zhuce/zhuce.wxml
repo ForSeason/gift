@@ -3,12 +3,12 @@
   <form bindsubmit='formsubmit'>
     <view class='zhucekuang'>注册</view>
     <view class='section_gap'>
-      <view class='section_title'>姓名（必填）</view>
-      <input name='nickname' class='neirong'></input>
+      <view class='section_title' >姓名（必填）</view>
+      <input name='nickname' class='neirong' maxlength='30'></input>
     </view>
     <view class='section_gap'>
       <view class='section_title'>手机号（必填）</view>
-      <input name='phone' class='neirong'></input>
+      <input name='phone' class='neirong' maxlength='20'></input>
     </view>
     <view class='section_gap'>
       <view class='section_title'>性别（必填）</view>
@@ -19,15 +19,15 @@
     </view>
     <view class='section_gap'>
       <view class='section_title'>账号（必填）</view>
-      <input name='id' class='neirong'></input>
+      <input name='id' class='neirong' maxlength='20'></input>
     </view>
     <view class='section_gap'>
       <view class='section_title'>密码（必填）</view>
-      <input name='password' class='neirong'></input>
+      <input name='password' class='neirong' password='true'></input>
     </view>
     <view class='section_gap'>
       <view class='section_title'>地址（选填）</view>
-      <input name='adress' class='neirong' placeholder='XX宿舍楼XXX'></input>
+      <input name='adress' class='neirong' placeholder='XX宿舍楼XXX' maxlength='100'></input>
     </view>
     <button form-type='submit' class='submit'>提交</button>
   </form>

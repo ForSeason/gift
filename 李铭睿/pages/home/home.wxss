@@ -1,45 +1,58 @@
 /* pages/home/home.wxss */
 .button {
-  height: 50pt;
-  width: 180pt;
-  font-size: 13pt;
+  height: 100rpx;
+  width: 375rpx;
+  font-size: 26rpx;
 }
 .sousuo{
-  height: 50pt;
-  width: 100pt;
-  font-size: 13pt;
+  height: 100rpx;
+  width: 560rpx;
+  font-size: 26rpx;
 }
 .sousuobutton {
-  height: 50pt;
-  width: 90pt;
+  height: 100rpx;
+  width: 190rpx;
   background-color: #0099ff;
+  color: white
 }
 .fenjie {
-  height: 40pt;
-  width: 360pt;
+  height: 80rpx;
+  width: 750rpx;
   background-color: gray;
 }
 .info {
   border-style: solid;
-  width: 280pt;
-  height: 75pt;
+  width: 590rpx;
+  height: 150rpx;
   border-width: thin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .content {
   border-style: solid;
-  width: 360pt;
-  height: 105pt;
+  width: 750rpx;
+  height: 210rpx;
   border-width: thin;
 }
 .good {
   border-style: solid;
-  width: 360pt;
-  height: 50pt;
+  width: 750rpx;
+  height: 100rpx;
   border-width: thin;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .dibu {
   border-style: solid;
   border-width: thin;
-  height: 75pt;
-  width: 360pt;
+  height: 170rpx;
+  width: 750rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbutton{
+  display: flex;
 }

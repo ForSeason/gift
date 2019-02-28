@@ -18,65 +18,90 @@ Page({
 
   formsubmit:function(e){
     var that=this
-    wx.request({
-      url: 'http://scut18pie1.top/test/gift/user/check_id_existence.php',
-      method: 'POST',
-      data: {
-        id: e.detail.value.id
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        that.setData({
-          check_id_existence:res.data
-        })
-      }
-    })
-    if(this.data.check_id_existence==0){
+    if (!(/^\w+$/.test(e.detail.value.id))){
+      wx.showToast({
+
+        title: '帐号使用英文数字下划线',
+
+        duration: 2000,
+
+        icon: 'none'
+
+      })
+    }
+    else if (!(/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/.test(e.detail.value.nickname))){
+      wx.showToast({
+
+        title: '姓名使用英文数字中文下划线',
+
+        duration: 2000,
+
+        icon: 'none'
+
+      })
+    }
+    else{
       wx.request({
-        url: 'http://scut18pie1.top/test/gift/user/register.php',
+        url: 'http://scut18pie1.top/test/gift/user/check_id_existence.php',
         method: 'POST',
         data: {
-          id: e.detail.value.id,
-          nickname: e.detail.value.nickname,
-          password: e.detail.value.password,
-          sex: e.detail.value.sex,
-          address: e.detail.value.adress,
-          phone: e.detail.value.phone
+          id: e.detail.value.id
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
           that.setData({
-            register: res.data
+            check_id_existence: res.data
           })
         }
       })
-    }
-    else{
-      wx.showToast({
-        title: '您输入的账号已存在',
-      })
-      setTimeout(function(){
-        wx.hideToast()
-      },2000)
-    }
-    if (this.data.register == 1){
-      wx.redirectTo({
-        url: '/pages/home/home',
-      })
-    }
-    else{
-      wx.showToast({
-        title: '我也不知道你为啥注册不了',
-      })
-      setTimeout(function () {
-        wx.hideToast()
-      }, 2000)
+      if (this.data.check_id_existence === 0) {
+        wx.request({
+          url: 'http://scut18pie1.top/test/gift/user/register.php',
+          method: 'POST',
+          data: {
+            id: e.detail.value.id,
+            nickname: e.detail.value.nickname,
+            password: e.detail.value.password,
+            sex: e.detail.value.sex,
+            address: e.detail.value.adress,
+            phone: e.detail.value.phone
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            that.setData({
+              register: res.data
+            })
+          }
+        })
+      }
+      else {
+        wx.showToast({
+          title: '您输入的账号已存在',
+        })
+        setTimeout(function () {
+          wx.hideToast()
+        }, 2000)
+      }
+      if (this.data.register === 1) {
+        wx.redirectTo({
+          url: '/pages/index1/index1',
+        })
+      }
+      else {
+        wx.showToast({
+          title: '我也不知道你为啥注册不了',
+        })
+        setTimeout(function () {
+          wx.hideToast()
+        }, 2000)
+      }
     }
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
