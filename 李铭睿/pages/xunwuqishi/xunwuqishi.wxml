@@ -3,18 +3,19 @@
   <view class='dingbulan'>寻物启事-发布</view>
   <form bindsubmit='formsubmit'>
     <view class='biankuang'>
-      <input placeholder='请选择发布的内容' placeholder-style='font-size:16pt' name='content'></input>
+      <textarea class='commentcenter' value='{{concent}}' placeholder='请选择发布的内容' placeholder-style='font-size:32rpx' bindinput='bindinput' maxlength='-1'></textarea>
     </view>
     <view class='biankuang' bindtap='addpicture'>
-      <image></image>
+      <image style='width:750rpx;height:562rpx' wx:if="tempFilePaths!=null" src='{{tempFilePaths[0]}}'></image>
+      <image style='width:750rpx;height:562rpx' wx:else></image>
     </view>
     <view class='info'>
-      <view style='font-size:16pt'>地址：</view>
-      <input style='font-size:16pt' name='address'></input>
+      <view style='font-size:32rpx'>地址：</view>
+      <input style='font-size:32rpx' name='address'></input>
     </view>
     <view class='info'>
-      <view style='font-size:16pt'>电话号码：</view>
-      <input style='font-size:16pt' name='phone'></input>
+      <view style='font-size:32rpx'>电话号码：</view>
+      <input style='font-size:32rpx' name='phone'></input>
     </view>
     <button class='button' form-type='submit'>提交</button>
   </form>

@@ -7,7 +7,8 @@ Page({
   data: {
     headPic:'',
     nickname:'',
-    tempFilePaths:''
+    tempFilePaths:'',
+    concent: '',
   },
 
   /**
@@ -30,6 +31,12 @@ Page({
           nickname:res.data.info.nickname
         })
       }
+    })
+  },
+
+  bindinput: function (e) {
+    this.setData({
+      concent: e.detail.value,
     })
   },
 
@@ -65,7 +72,7 @@ Page({
         'values[0]': e.detail.value.nickname,
         'values[1]': e.detail.value.phone,
         'values[2]': e.detail.value.address,
-        'values[3]': e.detail.value.selfIntro
+        'values[3]': that.data.concent
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded',

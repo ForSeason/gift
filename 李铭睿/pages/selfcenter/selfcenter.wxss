@@ -1,26 +1,29 @@
 /* pages/selfcenter/selfcenter.wxss */
 .section_title {
-  height: 35pt;
-  width: 360pt;
+  height: 70rpx;
+  width: 750rpx;
   background-color: gainsboro;
-  font-size: 18pt;
+  font-size: 36rpx;
 }
 .submit {
-  height: 60pt;
-  width: 160pt;
+  height: 120rpx;
+  width: 320rpx;
   color: white;
   background-color: #0066ff;
-  font-size: 16pt;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 .neirong {
-  height: 35pt;
-  width: 360pt;
-  min-height: 35pt;
-  font-size: 16pt;
+  height: 70rpx;
+  width: 750rpx;
+  min-height: 70rpx;
+  font-size: 32rpx;
 }
 .neirong2 {
-  height: 180pt;
-  width: 360pt;
-  min-height: 180pt;
-  font-size: 16pt;
+  height: 360rpx;
+  width: 750rpx;
+  min-height: 360rpx;
+  font-size: 32rpx;
 }

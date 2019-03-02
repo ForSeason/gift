@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tempFilePaths:''
+    tempFilePaths: null,
+    concent: '',
+    phone: '',
+    address: ''
   },
 
   /**
@@ -15,10 +18,11 @@ Page({
 
   },
 
-  addpicture:function(){
-    var that=this
+  addpicture: function () {
+    var that = this
     wx.chooseImage({
-      success: function(res) {
+      count:1,
+      success: function (res) {
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
@@ -26,8 +30,14 @@ Page({
     })
   },
 
-  formsubmit:function(e){
-    var that=this
+  bindinput: function (e) {
+    this.setData({
+      concent: e.detail.value,
+    })
+  },
+
+  formsubmit: function (e) {
+    var that = this
     wx.uploadFile({
       url: 'http://scut18pie1.top/test/gift/user/create_a_lost.php',
       filePath: that.data.tempFilePaths[0],
@@ -36,16 +46,16 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
       },
-      formData:{
-        'content':e.detail.value.content,
-        'phone':e.detail.value.phone,
-        'address':e.detail.value.address
+      formData: {
+        'content': that.data.concent,
+        'phone': e.detail.value.phone,
+        'address': e.detail.value.address
       },
-      success:function(res){
-        if(res.data==0){
+      success: function (res) {
+        if (res.data == 0) {
           console.log(res)
         }
-        else{
+        else {
           wx.redirectTo({
             url: '/pages/home/home',
           })

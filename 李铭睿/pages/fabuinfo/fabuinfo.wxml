@@ -3,8 +3,8 @@
   <button class='button' bindtap='gotoxunwu'>寻物启事</button>
   <button class='button' bindtap='gotoshiwu'>失物招领</button>
   <view class='dibu'>
-    <text style='font-size:24pt;color:#0099ff' bindtap='shiwuzhaoling'>失物招领</text>
-    <text style='font-size:24pt;color:#0099ff'>发布信息</text>
-    <text style='font-size:24pt;color:#0099ff' bindtap='selfcenter'>个人中心</text>
+    <text style='font-size:48rpx;color:#0099ff' bindtap='shiwuzhaoling'>失物招领</text>
+    <text style='font-size:48rpx;color:#0099ff'>发布信息</text>
+    <text style='font-size:48rpx;color:#0099ff' bindtap='selfcenter'>个人中心</text>
   </view>
 </view>

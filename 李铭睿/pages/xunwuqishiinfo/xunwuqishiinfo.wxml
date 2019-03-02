@@ -1,20 +1,26 @@
 <!--pages/xunwuqishiinfo/xunwuqishiinfo.wxml-->
 <view class='container'>
   <view class='dingbulan'>寻物启事-信息列表</view>
-  <view>
-    <image style='width:80pt;height:70pt;' src='http://{{userinfo.headPic}}'></image>
-    <view class='info'>
-      <text style='font-size:18pt;'>名字：{{userinfo.nickname}}</text>
-      <text style='font-size:18pt;'>发布时间：{{eventinfo.createTime}}</text>
+  <view  bindtap='gotodetail'>
+    <view class='topbutton'>
+      <image style='width:160rpx;height:150rpx;' src='http://{{userinfo.headPic}}' wx:if="{{userinfo.headPic!=null}}"></image>
+      <image style='width:160rpx;height:150rpx;' wx:else></image>
+      <view class='info'>
+        <text style='font-size:36rpx;'>名字：{{userinfo.nickname}}</text>
+        <text style='font-size:36rpx;'>发布时间：{{eventinfo.createTime}}</text>
+      </view>
     </view>
     <view class='content'>
-      <text style='font-size:13pt'>{{eventinfo.content}}</text>
+      <text style='font-size:26rpx'>{{eventinfo.content}}</text>
     </view>
     <view class='good'>
-      <text style='font-size:13pt'>点击:{{eventinfo.clicks}}</text>
-      <text style='font-size:13pt'>评论量：{{eventinfo.chats}}</text>
-      <text style='font-size:13pt'>点赞量：{{eventinfo.goods}}</text>
-      <text style='font-size:13pt'>转发</text>
+      <text style='font-size:26rpx'>点击:{{eventinfo.clicks}}</text>
+      <text style='font-size:26rpx'>评论量：{{eventinfo.chats}}</text>
+      <text style='font-size:26rpx'>点赞量：{{eventinfo.goods}}</text>
     </view>
+  </view>
+  <view class='topbutton'>
+    <button class='button' bindtap='pre' disabled='{{disabled}}'>上一条</button>
+    <button class='button'bindtap='next'>下一条</button>
   </view>
 </view>

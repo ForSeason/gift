@@ -10,7 +10,8 @@ Page({
     userinfo:'',
     start:0,
     step:1,
-    type:2
+    type:2,
+    disabled:true
   },
 
   /**
@@ -57,7 +58,8 @@ Page({
               },
               success: function (res) {
                 that.setData({
-                  userinfo: res.data
+                  userinfo: res.data,
+                  'eventinfo.createTime': getApp().toDate(that.data.eventinfo.createTime)
                 })
               }
             })
@@ -106,7 +108,7 @@ Page({
               },
               success: function (res) {
                 that.setData({
-                  userinfo: res.data
+                  userinfo: res.data,
                 })
                 console.log(that.data.userinfo)
               }
@@ -176,7 +178,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -203,10 +204,10 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  pre: function () {
     var that = this
     this.setData({
-      start:that.data.start+1
+      start:that.data.start-1
     })
     wx.request({
       url: 'http://scut18pie1.top/test/gift/user/get_event_list.php',
@@ -247,12 +248,88 @@ Page({
               },
               success: function (res) {
                 that.setData({
-                  userinfo: res.data
+                  userinfo: res.data,
+                  'eventinfo.createTime': getApp().toDate(that.data.eventinfo.createTime)
                 })
+                if(that.data.start===0){
+                  that.setData({
+                    disabled:true
+                  })
+                }
               }
             })
           }
         })
+      }
+    })
+  },
+
+  next: function () {
+    var that = this
+    this.setData({
+      start: that.data.start + 1
+    })
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/get_event_list.php',
+      method: 'POST',
+      data: {
+        start: that.data.start,
+        step: that.data.step,
+        type: that.data.type
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        if(res.data.length==0){
+          wx.showToast({
+
+            title: '没有更多了',
+
+            duration: 2000,
+
+            icon: 'none'
+
+          })
+          that.pre()
+        }
+        else{
+          that.setData({
+            eid: res.data
+          })
+          wx.request({
+            url: 'http://scut18pie1.top/test/gift/user/get_event_info.php',
+            method: 'POST',
+            data: {
+              eid: that.data.eid[0]
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              that.setData({
+                eventinfo: res.data
+              })
+              wx.request({
+                url: 'http://scut18pie1.top/test/gift/user/get_user_info.php',
+                method: 'POST',
+                data: {
+                  id: that.data.eventinfo.id
+                },
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded'
+                },
+                success: function (res) {
+                  that.setData({
+                    userinfo: res.data,
+                    'eventinfo.createTime': getApp().toDate(that.data.eventinfo.createTime),
+                    disabled: false
+                  })
+                }
+              })
+            }
+          })
+        }
       }
     })
   }

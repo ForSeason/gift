@@ -13,7 +13,8 @@
   <view bindtap='gotodetail'>
     <view class='fenjie'></view>
     <view class='topbutton'>
-      <image style='width:160rpx;height:150rpx;' src='http://{{userinfo.headPic}}'></image>
+      <image style='width:160rpx;height:150rpx;' src='http://{{userinfo.headPic}}' wx:if="{{userinfo.headPic!=null}}"></image>
+      <image style='width:160rpx;height:150rpx;' wx:else></image>
       <view class='info'>
         <text style='font-size:36rpx;'>名字：{{userinfo.nickname}}</text>
         <text style='font-size:36rpx;'>发布时间：{{eventinfo.createTime}}</text>
@@ -27,6 +28,10 @@
     <text style='font-size:26rpx'>点击:{{eventinfo.clicks}}</text>
     <text style='font-size:26rpx'>评论量：{{eventinfo.chats}}</text>
     <text style='font-size:26rpx'>点赞量：{{eventinfo.goods}}</text>
+  </view>
+  <view class='topbutton'>
+    <button class='button' bindtap='pre' disabled='{{disabled}}'>上一条</button>
+    <button class='button'bindtap='next'>下一条</button>
   </view>
   <view class='dibu'>
     <text style='font-size:48rpx;color:#0099ff'>失物招领</text>

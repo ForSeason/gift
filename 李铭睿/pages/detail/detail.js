@@ -10,7 +10,8 @@ Page({
     userinfo:'',
     comment:'',
     color:'black',
-    hidden:true
+    hidden:true,
+    concent:'',
   },
 
   /**
@@ -35,8 +36,28 @@ Page({
       },
       success: function (res) {
         that.setData({
-          comment: res.data
+          comment: res.data,
         })
+        var i;
+        for (i = 0; i < that.data.comment.length; i++) {
+          wx.request({
+            url: 'http://scut18pie1.top/test/gift/user/get_user_info.php',
+            method: 'POST',
+            data: {
+              id: that.data.comment[i].id,
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded',
+              'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+            },
+            success: function (res) {
+              that.setData({
+                'comment[0].nickname':res.data.nickname
+              })
+              console.log(that.data)
+            }
+          })
+        }
       }
     })
     wx.request({
@@ -136,11 +157,51 @@ Page({
     })
   },
   
+  formsubmit: function (e) {
+    var that=this
+    wx.request({
+      url: 'http://scut18pie1.top/test/gift/user/post_a_chat.php',
+      method: 'POST',
+      data: {
+        rid: that.data.eventinfo.rid,
+        content: that.data.concent
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
+      },
+      success: function (res) {
+        if (res.data === 1) {
+          wx.redirectTo({
+            url: '/pages/home/home',
+          })
+        }
+        else {
+          wx.showToast({
+
+            title: '发布失败',
+
+            duration: 2000,
+
+            icon: 'none'
+
+          })
+        }
+      }
+    })
+  },
+
+  bindinput:function(e){
+    this.setData({
+      concent: e.detail.value,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

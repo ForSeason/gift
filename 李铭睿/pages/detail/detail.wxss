@@ -64,7 +64,8 @@
   border-style: solid;
   border-width: thin;
   background-color: white;
-  top: 300rpx
+  top: 300rpx;
+  justify-content: space-between
 }
 .commenttop{
   display: flex;
@@ -85,12 +86,12 @@
   height: 100rpx;
   width: 350rpx;
   background-color: #0099ff;
-  color: white
+  color: white;
+  margin: 0rpx
 }
 .commentbottom{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 600rpx;
-  min-width: 600rpx
+  width: 100%
 }

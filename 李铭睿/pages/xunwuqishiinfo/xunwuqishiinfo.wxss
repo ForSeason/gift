@@ -1,25 +1,44 @@
 /* pages/xunwuqishiinfo/xunwuqishiinfo.wxss */
 .dingbulan {
-  height: 50pt;
-  width: 360pt;
+  height: 100rpx;
+  width: 750rpx;
   background-color: #0066ff;
   color: white;
+  display: flex;
+  align-items: center
 }
 .info {
   border-style: solid;
-  width: 280pt;
-  height: 75pt;
+  width: 590rpx;
+  height: 150rpx;
   border-width: thin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .content {
   border-style: solid;
-  width: 360pt;
-  height: 105pt;
+  width: 750rpx;
+  height: 210rpx;
   border-width: thin;
 }
 .good {
   border-style: solid;
-  width: 360pt;
-  height: 50pt;
+  width: 750rpx;
+  height: 100rpx;
   border-width: thin;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.topbutton{
+  display: flex;
+}
+.button {
+  height: 100rpx;
+  width: 375rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

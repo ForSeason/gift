@@ -2,7 +2,8 @@
 <view class='container'>
   <view class='top' bindtap='back'>←详情</view>
   <view class='name'>
-    <image style='width:100rpx;height:100rpx;' src='http://{{userinfo.headPic}}'></image>
+    <image style='width:100rpx;height:100rpx;' src='http://{{userinfo.headPic}}' wx:if="{{userinfo.headPic!=null}}"></image>
+    <image style='width:100rpx;height:100rpx;' wx:else></image>
     <view class='info'>
       <text style='font-size:36rpx;'>名字：{{userinfo.nickname}}</text>
       <text style='font-size:36rpx;'>时间：{{eventinfo.createTime}}</text>
@@ -11,10 +12,11 @@
   <view class='content'>
       <text style='font-size:26rpx'>{{eventinfo.content}}</text>
   </view>
-  <image style='width:750rpx;height:562rpx' src='http://{{eventinfo.pics[0]}}'></image>
+  <image style='width:750rpx;height:562rpx' src='http://{{eventinfo.pics[0]}}'wx:if="{{eventinfo.pics!=null}}"></image>
+  <image style='width:750rpx;height:562rpx;' wx:else></image>
   <view class='center'>讨论区</view>
-  <view class='comment'>
-    <text style='font-size:36rpx'>{{comment}}</text>
+  <view class='comment' wx:for="{{comment}}">
+    
   </view>
   <view class='bottom'>
     <text style='font-size=36rpx' bindtap='tohome'>首页</text>
@@ -28,7 +30,7 @@
     </view>
     <form bindsubmit='formsubmit'>
       <view class='commentcenterdad'>
-        <textarea class='commentcenter' value='{{concent}}' bindblur='bindTextAreaBlur' focus='{{focus}}'></textarea>
+        <textarea class='commentcenter' value='{{concent}}' bindinput='bindinput' maxlength='-1'></textarea>
       </view>
       <view class='commentbottom'>
         <text>请文明发言</text>

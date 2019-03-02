@@ -1,12 +1,19 @@
 /* pages/fabuinfo/fabuinfo.wxss */
 .button {
-  height: 130pt;
-  width: 360pt;
-  font-size: 28pt;
+  height: 260rpx;
+  width: 750rpx;
+  font-size: 56rpx;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 .dibu {
   border-style: solid;
   border-width: thin;
-  height: 75pt;
-  width: 360pt;
+  height: 170rpx;
+  width: 750rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

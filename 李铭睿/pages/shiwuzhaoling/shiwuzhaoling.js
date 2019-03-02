@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tempFilePaths: ''
+    tempFilePaths: '',
+    concent: '',
+    phone:'',
+    address:''
   },
 
   /**
@@ -18,11 +21,18 @@ Page({
   addpicture: function () {
     var that = this
     wx.chooseImage({
+      count:1,
       success: function (res) {
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
       },
+    })
+  },
+
+  bindinput: function (e) {
+    this.setData({
+      concent: e.detail.value,
     })
   },
 
@@ -37,7 +47,7 @@ Page({
         'cookie': 'PHPSESSID=' + wx.getStorageSync("sessionid")
       },
       formData: {
-        'content': e.detail.value.content,
+        'content': that.data.concent,
         'phone': e.detail.value.phone,
         'address': e.detail.value.address
       },

@@ -1,7 +1,7 @@
 <!--pages/selfcenter/selfcenter.wxml-->
 <view class='container'>
-  <image src='http://{{headPic}}' style='width:85pt;height:85pt;' bindtap='changehead'></image>
-  <text style='font-size:22pt'>{{nickname}}</text>
+  <image src='http://{{headPic}}' style='width:170rpx;height:170rpx;' bindtap='changehead'></image>
+  <text style='font-size:44rpx'>{{nickname}}</text>
   <form bindsubmit='formsubmit'>
     <view class='section_gap'>
       <view class='section_title'>姓名</view>
@@ -17,7 +17,7 @@
     </view>
     <view class='section_gap'>
       <view class='section_title'>详细介绍下自己</view>
-      <input name='selfIntro' class='neirong2'></input>
+      <textarea class='neirong2' value='{{concent}}' bindinput='bindinput' maxlength='-1'></textarea>
     </view>
     <button form-type='submit' class='submit'>提交保存</button>
   </form>

@@ -1,24 +1,36 @@
 /* pages/shiwuzhaoling/shiwuzhaoling.wxss */
 .dingbulan {
-  height: 50pt;
-  width: 360pt;
+  height: 100rpx;
+  width: 750rpx;
   background-color: #0066ff;
   color: white;
-  font-size: 16pt;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center
 }
 .biankuang {
   border-style: solid;
-  width: 360pt;
+  width: 750rpx;
   border-width: thin;
 }
 .info {
   border-style: solid;
-  width: 360pt;
+  width: 750rpx;
   border-width: thin;
-  height: 50pt;
+  height: 100rpx;
+  display: flex;
+  align-items: center
 }
 .button {
-  height: 80pt;
-  width: 160pt;
-  font-size: 18pt;
+  height: 110rpx;
+  width: 320rpx;
+  font-size: 36rpx;
+}
+.commentcenter{
+  border-style: solid;
+  border-width: thin;
+  border-color: gainsboro;
+  height: 200rpx;
+  width: 750rpx;
+  font-size: 32rpx
 }
