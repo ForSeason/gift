@@ -1,9 +1,0 @@
-<?php
-    header('Content-Type:text/html;charset=utf-8');
-    header("Access-Control-Allow-Origin:http://localhost:8080");
-    header("Access-Control-Allow-Credentials:true");
-    date_default_timezone_set("Asia/Shanghai");
-    define('DATABASE_NAME','mysql:host=localhost;dbname=gift');
-    define('DATABASE_ID','root');
-    define('DATABASE_PW','');
-?>
