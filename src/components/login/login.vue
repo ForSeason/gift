@@ -39,7 +39,7 @@ export default {
             console.log(document.cookie)
         },
         getUserInfo(){
-            this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
+            this.$axios.get("/get_my_info.php")
             .then(res => {
                 if(res.data.status === 0){
                     Toast({
@@ -63,15 +63,14 @@ export default {
                 }
                 this.$store.commit('setPic',userPic);
                 this.$store.commit('setAddress',userinfo.address);
-            });
-            this.$store.commit('setLogState',1);
-            if(this.to !== ''){
-                this.$router.push(this.to);
-            } else {
-                this.$router.push('/');
+                if(this.to !== ''){
+                    this.$router.push(this.to);
+                } else {
+                    this.$router.push('/');
 
-            }
-            
+                }
+            });
+            this.$store.commit('setLogState',1); 
         },
         login(){
             this.keep();
@@ -79,14 +78,14 @@ export default {
                 this.isLoginFail = 2;
                 return;
             }
-            this.$axios.post("http://scut18pie1.top/test/gift/user/login.php",
+            this.$axios.post("/login.php",
             qs.stringify({
                 id:this.userid,
                 password:this.userpassword
             })
             ).then(res => {
                 if(res.data === 0){
-                    this.$axios.post("http://scut18pie1.top/test/gift/user/check_id_existence.php",
+                    this.$axios.post("/check_id_existence.php",
                     qs.stringify({
                         id:this.userid
                     }))

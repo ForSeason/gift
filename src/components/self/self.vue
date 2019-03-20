@@ -59,7 +59,7 @@ export default {
 
         },
         getUserInfo(){
-            this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
+            this.$axios.get("/get_my_info.php")
             .then(res => {
                 if(res.data.status === 0){
                     Toast({
@@ -138,7 +138,7 @@ export default {
             var file =document.getElementById('updataPic').files[0];
             var formdata = new FormData();
             formdata.append('headPic',file);
-            this.$axios.post('http://scut18pie1.top/test/gift/user/update_my_info.php',
+            this.$axios.post('/update_my_info.php',
             qs.stringify({
                     params:['address','selfIntro','phone','nickname'],
                     values:[this.useraddress,this.userselfintro,this.userphone,this.username]
@@ -161,7 +161,7 @@ export default {
             if(file){
             this.$axios({
                 method:'post',
-                url: 'http://scut18pie1.top/test/gift/user/update_headPic.php',
+                url: '/update_headPic.php',
                 data:formdata,
                 headers:{'Content-Type':'multipart/form-data'},
             })

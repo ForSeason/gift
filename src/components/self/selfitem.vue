@@ -85,7 +85,7 @@ export default {
                 this.$router.push('/log');
             }
 
-            this.$axios.post('http://scut18pie1.top/test/gift/user/good.php',
+            this.$axios.post('/good.php',
             qs.stringify({
                 eid:this.info.eid,
             })).then (res => {
@@ -105,7 +105,7 @@ export default {
                 this.isGood = 0;
                 return;
             }
-            this.$axios.post('http://scut18pie1.top/test/gift/user/check_good_existence.php',
+            this.$axios.post('/check_good_existence.php',
             qs.stringify({
                 eid:this.info.eid,
             }))

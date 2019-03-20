@@ -30,7 +30,7 @@ export default {
                 });
                 return;
             }
-            this.$axios.post('http://scut18pie1.top/test/gift/user/search_event.php',
+            this.$axios.post('/search_event.php',
             qs.stringify({
                 content:this.text,
             })).then( res => {

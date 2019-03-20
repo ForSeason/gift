@@ -30,7 +30,7 @@ export default {
         chatlistitem,
     },
     mounted(){
-        this.$axios.post('http://scut18pie1.top/test/gift/user/get_room_list.php')
+        this.$axios.post('/get_room_list.php')
         .then (res => {
             this.list = res.data;
         })

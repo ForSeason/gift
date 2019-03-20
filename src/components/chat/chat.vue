@@ -65,7 +65,7 @@ export default {
             
         },
         getMessage(type = 0){
-            this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+            this.$axios.post('/pull_chats.php',
             qs.stringify({
                 rid:this.rid,
             })).then(res => {
@@ -92,7 +92,7 @@ export default {
                 return;
             }
             if(!this.ishave){
-                this.$axios.post('http://scut18pie1.top/test/gift/user/create_a_chatroom.php',
+                this.$axios.post('/create_a_chatroom.php',
                 qs.stringify({
                     title:'chatRoom',
                     participants:[this.info.myId,this.info.thatId],
@@ -103,7 +103,7 @@ export default {
                 })
             } else {
                 
-                this.$axios.post('http://scut18pie1.top/test/gift/user/post_a_chat.php',
+                this.$axios.post('/post_a_chat.php',
                 qs.stringify({
                     rid:this.rid,
                     content:this.writeData,
@@ -119,14 +119,14 @@ export default {
             formdata.append('pic',file);
             this.$axios({
                 method:'post',
-                url: 'http://scut18pie1.top/test/gift/user/upload_pic.php',
+                url: '/upload_pic.php',
                 data:formdata,
                 headers:{'Content-Type':'multipart/form-data'},
             })
             .then(res => {
                 document.getElementById('myPic').value = '';
                 console.log('img|'+res.data);
-                this.$axios.post('http://scut18pie1.top/test/gift/user/post_a_chat.php',
+                this.$axios.post('/post_a_chat.php',
                 qs.stringify({
                     rid:this.rid,
                     content: 'img|'+res.data,
@@ -141,14 +141,14 @@ export default {
 
         },
         isHave(){
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_room_list.php')
+            this.$axios.post('/get_room_list.php')
             .then (res => {
                 var length = 0;
                 if(res.data.length === 0){
                     Indicator.close();
                 }
                 res.data.forEach((item) => {
-                    this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+                    this.$axios.post('/pull_chats.php',
                     qs.stringify({
                         rid:item,
                     })).then(re => {
@@ -171,7 +171,7 @@ export default {
                 });
 
                 // for(var i =0;i<res.data.length;i++){
-                //     this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+                //     this.$axios.post('/pull_chats.php',
                 //     qs.stringify({
                 //         rid:res.data[i],
                 //     })).then (re => {
@@ -186,14 +186,14 @@ export default {
 
                 // }
             })
-            // this.$axios.post('http://scut18pie1.top/test/gift/user/post_a_chat.php',
+            // this.$axios.post('/post_a_chat.php',
             // qs.stringify({
             //     rid:26,
             //     content:'你好',
             // })) .then(res => {
             //     console.log('send',res.data);
             // })
-            // this.$axios.post('http://scut18pie1.top/test/gift/user/create_a_chatroom.php',
+            // this.$axios.post('/create_a_chatroom.php',
             // qs.stringify({
             //     title:'chatroom',
             //     participants:[this.info.myId,this.info.thatId],
@@ -201,7 +201,7 @@ export default {
             //     console.log(res.data);
             // })
 
-            // this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+            // this.$axios.post('/pull_chats.php',
             // qs.stringify({
             //     rid:26,
             // })).then (res => {

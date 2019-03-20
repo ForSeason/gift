@@ -75,6 +75,7 @@ Vue.use(Viewer, {
 })
 Vue.config.productionTip = false;
 axios.defaults.withCredentials=true;
+axios.defaults.baseURL = "http://scut18pie1.top/test/gift/user"
 Vue.prototype.$axios = axios;
 Vue.use(MintUI);
 window.Toast= Toast;

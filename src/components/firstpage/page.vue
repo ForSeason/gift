@@ -118,7 +118,7 @@ export default {
                     type:this.selected === '2'?2:1
                 })
             };
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_list.php',data)
+            this.$axios.post('/get_event_list.php',data)
             .then( res => {
                 var add =[];
                 for(var i = 0;i<res.data.length;i++){
@@ -144,12 +144,12 @@ export default {
                     });
                 }
                 for(var i = 0;i<add.length;i++){
-                    this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
+                    this.$axios.post('/get_event_info.php',
                     qs.stringify({
                         eid:add[i]
                     }))
                     .then (re => {
-                        this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+                        this.$axios.post('/get_user_info.php',
                         qs.stringify({
                             id:re.data.id
                         }))
@@ -236,7 +236,7 @@ export default {
                     type:type
                 })
             }
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_list.php',data)
+            this.$axios.post('/get_event_list.php',data)
             .then(res => {
                 if(res.data.length === 0){
                     Toast({
@@ -248,12 +248,12 @@ export default {
                     
                 }
                 for(var i = 0,j = 0;i<res.data.length;i++){
-                    this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
+                    this.$axios.post('/get_event_info.php',
                     qs.stringify({
                         eid:res.data[i]
                     }))
                     .then (re => {
-                        this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+                        this.$axios.post('/get_user_info.php',
                         qs.stringify({
                             id:re.data.id
                         }))

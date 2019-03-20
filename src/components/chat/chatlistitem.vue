@@ -17,7 +17,7 @@ export default {
         }
     },
     mounted(){
-        this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+        this.$axios.post('/pull_chats.php',
         qs.stringify({
             rid:this.info
         })) .then(res => {
@@ -27,7 +27,7 @@ export default {
             } else {
                 thatId = res.data.members[0].id;
             }
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+            this.$axios.post('/get_user_info.php',
             qs.stringify({
                 id:thatId,
             })) .then (re => {

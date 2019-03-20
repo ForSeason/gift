@@ -72,7 +72,7 @@ export default {
     },
     methods:{
         getUserInfo(){
-            this.$axios.get("http://scut18pie1.top/test/gift/user/get_my_info.php")
+            this.$axios.get("/get_my_info.php")
             .then(res => {
                 if(res.data.status === 0){
                     Toast({
@@ -147,7 +147,7 @@ export default {
                 this.errorList['id'].error = '账号过长';
                 return false;
             }
-            this.$axios.post("http://scut18pie1.top/test/gift/user/check_id_existence.php",
+            this.$axios.post("/check_id_existence.php",
                 qs.stringify({
                     id:this.userid
                 }))
@@ -189,7 +189,7 @@ export default {
         },
         submit(){
             if(this.checkPassword() && this.checkName() && this.checkPhone() && this.checkId()){
-                this.$axios.post("http://scut18pie1.top/test/gift/user/register.php",
+                this.$axios.post("/register.php",
                 qs.stringify({
                     id: this.userid,
                     nickname: this.username,
@@ -205,7 +205,7 @@ export default {
                         position:'bottom',
                         duration:'1000',
                     });
-                    this.$axios.post("http://scut18pie1.top/test/gift/user/login.php",
+                    this.$axios.post("/login.php",
                     qs.stringify({
                         id:this.userid,
                         password:this.userpassword

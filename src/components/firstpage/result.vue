@@ -38,12 +38,12 @@ export default {
         getList(){
             var _this = this;
                 for(var i = 0,j = 0;i<this.info.length;i++){
-                    this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
+                    this.$axios.post('/get_event_info.php',
                     qs.stringify({
                         eid:this.info[i]
                     }))
                     .then (re => {
-                        this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+                        this.$axios.post('/get_user_info.php',
                         qs.stringify({
                             id:re.data.id
                         }))

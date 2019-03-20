@@ -44,7 +44,7 @@ export default {
             }
         },
         getUserInfo(){
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+            this.$axios.post('/get_user_info.php',
             qs.stringify({
                 id:this.info.id,
             })).then(res => {

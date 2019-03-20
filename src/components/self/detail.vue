@@ -128,7 +128,7 @@ export default {
             setTimeout(() => {document.getElementById('comment').focus();}, 10);
         },
         getInfo(){
-            this.$axios.post('http://scut18pie1.top/test/gift/user/get_event_info.php',
+            this.$axios.post('/get_event_info.php',
             qs.stringify({
                 eid:this.info.eid,
             })).then (res => {
@@ -141,7 +141,7 @@ export default {
                 this.info.rid = res.data.rid;
                 this.info.type = res.data.type;
                 this.getComment();
-                this.$axios.post('http://scut18pie1.top/test/gift/user/get_user_info.php',
+                this.$axios.post('/get_user_info.php',
                 qs.stringify({
                     id:res.data.id,
                 })) .then(re => {
@@ -159,7 +159,7 @@ export default {
             }
         },
         getComment(){
-            this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+            this.$axios.post('/pull_chats.php',
             qs.stringify({
                 rid:this.info.rid,
             })).then (res => {
@@ -200,7 +200,7 @@ export default {
                 });
                 return;
             }
-            this.$axios.post('http://scut18pie1.top/test/gift/user/pull_chats.php',
+            this.$axios.post('/pull_chats.php',
             qs.stringify({
                 rid:this.info.rid
             })).then(res => {
@@ -227,7 +227,7 @@ export default {
                     to:to,
                     content:this.myComment,
                 }
-                this.$axios.post('http://scut18pie1.top/test/gift/user/post_a_chat.php',
+                this.$axios.post('/post_a_chat.php',
                 qs.stringify({
                     rid:this.info.rid,
                     content:JSON.stringify(sendMessage),
@@ -250,7 +250,7 @@ export default {
             }
         },
         changeGood(){
-            this.$axios.post('http://scut18pie1.top/test/gift/user/good.php',
+            this.$axios.post('/good.php',
             qs.stringify({
                 eid:this.info.eid
             })).then (res => {
@@ -268,7 +268,7 @@ export default {
         var _this = this;
         this.setGood();
         this.getInfo();
-        this.$axios.post('http://scut18pie1.top/test/gift/user/click.php',
+        this.$axios.post('/click.php',
         qs.stringify({
             eid:_this.info.eid
         })).then(res => {

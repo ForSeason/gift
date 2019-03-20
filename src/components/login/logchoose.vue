@@ -23,6 +23,7 @@
 </template>
 <script>
 import login from './login.vue'
+import { setTimeout } from 'timers';
 export default {
     components:{
         login,
@@ -58,11 +59,10 @@ export default {
         
     },
     mounted(){
-        console.log('to',this.$route.query.to.path);
-        if(this.$route.query.to){
-            this.to = this.$route.query.to.path;
-        }
-        this.getCookie();
+         if(this.$route.query.to){
+             this.to = this.$route.query.to.path;
+         }
+         this.getCookie();
 
     },
     
